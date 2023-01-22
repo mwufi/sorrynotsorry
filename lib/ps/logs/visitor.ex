@@ -8,7 +8,7 @@ defmodule Ps.Logs.Visitor do
     field :last_visit, :utc_datetime
     field :name, :string
     field :status, :string
-    field :visit_count, :integer
+    field :visit_count, :integer, default: 0
 
     timestamps()
   end
@@ -16,7 +16,7 @@ defmodule Ps.Logs.Visitor do
   @doc false
   def changeset(visitor, attrs) do
     visitor
-    |> cast(attrs, [:name, :cookie, :last_visit, :first_visit, :status])
+    |> cast(attrs, [:name, :cookie, :last_visit, :first_visit, :status, :visit_count])
     |> validate_required([:name])
   end
 end
