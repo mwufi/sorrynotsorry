@@ -139,6 +139,8 @@ ul :last-child, ol :last-child {
   max-width: 100%;
   box-sizing: content-box;
   background-color: #ffffff;
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
 }
 
 .markdown-body code,

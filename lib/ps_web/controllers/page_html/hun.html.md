@@ -1,5 +1,7 @@
 # hi, i'm zen
 
+<img src="https://images.unsplash.com/photo-1674160797233-4807abd77a32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1330&q=80" />
+
 I'm Chris, a web developer during the week and a hill climber and walker at the weekends. I'm a keen photographer and usually take photos around Scotland.
 
 This website is a personal record of my walks, hikes and climbs.
