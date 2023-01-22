@@ -39,3 +39,7 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+let score = 0
+window.foo = function () {
+  console.log(`you clicked the button! score: ${++score}`)
+}
