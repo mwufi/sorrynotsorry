@@ -11,10 +11,11 @@ hi
 
 ## ok this is a real heading
 
+<button class='px-4 py-2 border mb-4' onclick=\"alert('hi')\">Click me</button>
+
 here is a paragaph
 
 here is a [link to google](http://google.com)
-
 
 
     ")}
