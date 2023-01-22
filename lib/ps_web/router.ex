@@ -71,6 +71,8 @@ defmodule PsWeb.Router do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
     end
+
+    resources "/posts", PostController
   end
 
   scope "/", PsWeb do
