@@ -43,3 +43,24 @@ let score = 0
 window.foo = function () {
   console.log(`you clicked the button! score: ${++score}`)
 }
+
+import {Editor} from "@tiptap/core"
+import StarterKit from "@tiptap/starter-kit"
+import Highlight from "@tiptap/extension-highlight"
+import Typography from "@tiptap/extension-typography"
+
+const editor = new Editor({
+  element: document.querySelector(".element"),
+  extensions: [StarterKit, Highlight, Typography],
+  content:
+    "<p><strong>read a danmei novel that is not wuxia, xianxia, or xuanhuan</strong></p><p><em>how do aspects of worldbuilding differ across genres? what new aspects of culture, character, or language do you observe in a different genre setting? how much character or worldbuilding do you think is attributable to genre convention, and how much isn’t? what do you think readers find attractive about wuxia/xianxia/xuanhuan settings? what do you think readers find attractive about other genres?</em></p><p><strong>read a danmei novel set in modern day China</strong></p><p><em>how do the emotional and narrative stakes of novels change depending on time period? what were you surprised by? what similarities or resonances did you recognize between the text and your own life? how does the fabric of the setting in this novel differ from novels set in other time periods and settings? in what ways do class and power factor into character conflicts and relationships? how do these differ from the way class and power are addressed in historical novels? what is the role of tradition and history in this novel? do you find the text more realistic because it’s set in modern day? why or why not? how important do you think “realism” is to the text and the readers? why might this be? how important is “realism” to your reading experience? why might this be?</em></p><p></p>",
+  placeholder: "Write something …",
+})
+
+// save editor content
+const saveButton = document.querySelector("#save-button")
+saveButton.addEventListener("click", () => {
+  console.log(editor.getHTML())
+})
+
+console.log("end of script!")

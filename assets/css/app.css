@@ -4,3 +4,7 @@
 
 /* This file is for your main application CSS */
 @import "markdown.css";
+
+.ProseMirror:focus {
+    outline: none;
+}

@@ -1,6 +1,5 @@
 # hi, i'm zen
 
-<img src="https://images.unsplash.com/photo-1674160797233-4807abd77a32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1330&q=80" />
 
 I'm Chris, a web developer during the week and a hill climber and walker at the weekends. I'm a keen photographer and usually take photos around Scotland.
 
@@ -41,5 +40,7 @@ Before describing the positive attributes I experienced on Substack, for the sak
 Publishing a book through a traditional, major, publishing house in New York is remarkably rewarding. With a physical book, especially one that shows up in local bookstores, there’s an incredible sense of pride and accomplishment. There’s nothing quite like being sent a photo from a family member of your book on a shelf at home or in a store. If you’re lucky enough to do a book tour or book signing, the feels grow even more. If you’re part of the very tiny number of books to get reviewed in the NY Times and potentially appear on their list, then you have the utmost seal of approval one could have for a book. For many that is career-worthy achievement. I never made it that far but did make it on the shelves of B&N in my hometown and that was quite a thrill. To those that accomplished one of these milestones, congratulations are well-deserved.
 
 There are many reasons to write a book beyond just the belief in something to say. In business, many books serve to further a consulting or speaking agenda. Such books lend credibility along with a clear understanding of what the author has to offer. Some might be surprised to know that often an agreement to appear comes with a commitment to purchase a set number of copies of a book, which provides sales which in turn drives the potential to appear on best seller lists. Academic books are often a key part of the tenure process and serve to solidify an area of expertise. Reporters who cover companies or sectors often cap off their assignments by writing a book pulling together all their reporting.
+
+<img style="width: 60%" src="https://images.unsplash.com/photo-1674160797233-4807abd77a32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1330&q=80" />
 
 The process of bringing a book to market, however, is one with a good set of challenges. Those in the industry generally suggest that the prestige that comes from traditionally printed book is because of the process that one goes through. There are many who have detailed the many steps and difficulties of the book publishing process. Tren Griffin (@tgriffin) has a great post on the subject in A Half Dozen Lessons About Writing and Getting Published based on his experience as a seven-time published author. Even the leading trade publication Publisher’s Weekly often shares the difficulties. The following table by [Jane Friedman](https://www.janefriedman.com/key-book-publishing-path/) is one view of all the traditional ways to bring a book to market.

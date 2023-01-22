@@ -18,6 +18,7 @@ defmodule PsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :other
+    get "/editor", PageController, :editor
     live "/live", PageLive, :other
   end
 
