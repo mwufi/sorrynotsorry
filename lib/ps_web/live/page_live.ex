@@ -1,13 +1,19 @@
 defmodule PsWeb.PageLive do
   use PsWeb, :live_view
+  alias Ps.Accounts
 
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, count: 0, user_style: "
+  def mount(_params, session, socket) do
+    user = if Map.has_key?(session, "user_token") do
+      Accounts.get_user_by_session_token(session["user_token"])
+    else
+      nil
+    end
+
+    {:ok, assign(socket, current_user: user, count: 0, user_style: "
 p:hover {
   color: firebrick !important;
 }
-",
-    markdown_blurb: "
+", markdown_blurb: "
 hi
 
 # What's up homies
