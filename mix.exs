@@ -44,6 +44,7 @@ defmodule Ps.MixProject do
       {:phoenix_live_view, "~> 0.18.3"},
       {:heroicons, "~> 0.5"},
       {:floki, ">= 0.30.0", only: :test},
+      {:let_me, "~> 1.0.2"},
       {:phoenix_live_dashboard, "~> 0.7.2"},
       {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},

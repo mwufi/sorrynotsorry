@@ -5,8 +5,17 @@ defmodule PsWeb.PostController do
   alias Ps.Posts.Post
 
   def index(conn, _params) do
-    posts = Posts.list_posts()
-    render(conn, :index, posts: posts)
+    if(conn.assigns.current_user == nil) do
+      posts = Posts.list_public_posts()
+      render(conn, :index, public_posts: posts, posts: [])
+    else
+      posts = Posts.list_posts_for_user(conn.assigns.current_user)
+
+      render(conn, :index,
+        public_posts: Posts.list_public_posts(conn.assigns.current_user),
+        posts: posts
+      )
+    end
   end
 
   def new(conn, _params) do
@@ -29,20 +38,30 @@ defmodule PsWeb.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Posts.get_post!(id)
-    render(conn, :show, post: post)
+    case Posts.get_post_for_user(conn.assigns.current_user, id) do
+      {:ok, post} ->
+        render(conn, :show, post: post)
+
+      {:error, :unauthorized} ->
+        IO.puts("unauthorized!!!")
+
+        conn
+        |> put_flash(:error, "Post not found.")
+        |> redirect(to: "/posts")
+    end
   end
 
   def edit(conn, %{"id" => id}) do
-    post = Posts.get_post!(id)
+    {:ok, post} = Posts.get_post_for_user(conn.assigns.current_user, id)
+
     changeset = Posts.change_post(post)
     render(conn, :edit, post: post, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
-    post = Posts.get_post!(id)
+    {:ok, post} = Posts.get_post_for_user(conn.assigns.current_user, id)
 
-    case Posts.update_post(post, post_params) do
+    case Posts.update_post_for_user(post, conn.assigns.current_user, post_params) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")
@@ -54,8 +73,8 @@ defmodule PsWeb.PostController do
   end
 
   def delete(conn, %{"id" => id}) do
-    post = Posts.get_post!(id)
-    {:ok, _post} = Posts.delete_post(post)
+    {:ok, post} = Posts.get_post_for_user(conn.assigns.current_user, id)
+    {:ok, _post} = Posts.delete_post_for_user(post, conn.assigns.current_user)
 
     conn
     |> put_flash(:info, "Post deleted successfully.")

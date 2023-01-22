@@ -23,6 +23,8 @@ defmodule PsWeb.Router do
     get "/", PageController, :other
     get "/editor", PageController, :editor
     live "/live", PageLive, :other
+
+    resources "/posts", PostController, only: [:index, :new, :show]
   end
 
   # Other scopes may use custom stacks.
@@ -72,7 +74,7 @@ defmodule PsWeb.Router do
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
     end
 
-    resources "/posts", PostController
+    resources "/posts", PostController, except: [:index, :new, :show]
   end
 
   scope "/", PsWeb do

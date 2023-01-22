@@ -5,6 +5,7 @@ defmodule Ps.Posts do
 
   import Ecto.Query, warn: false
   alias Ps.Repo
+  alias Ps.Policy
 
   alias Ps.Posts.Post
 
@@ -17,8 +18,16 @@ defmodule Ps.Posts do
       [%Post{}, ...]
 
   """
-  def list_posts do
-    Repo.all(Post)
+  def list_posts_for_user(current_user) do
+    Post |> Post.scope(current_user) |> Repo.all()
+  end
+
+  def list_public_posts(exclude_user \\ nil) do
+    if exclude_user do
+      Post |> where([p], p.author_id != ^exclude_user.id) |> where(is_draft: false) |> Repo.all()
+    else
+      Post |> where(is_draft: false) |> Repo.all()
+    end
   end
 
   @doc """
@@ -36,6 +45,22 @@ defmodule Ps.Posts do
 
   """
   def get_post!(id), do: Repo.get!(Post, id)
+
+  @doc """
+  Gets a single post.
+
+  Returns `nil` if the Post does not exist.
+  """
+  def get_post_for_user(current_user, id) do
+    post =
+      Post
+      |> where(id: ^id)
+      |> Repo.one()
+
+    with :ok <- Policy.authorize(:post_read, current_user, post) do
+      {:ok, post}
+    end
+  end
 
   @doc """
   Creates a post.
@@ -60,17 +85,19 @@ defmodule Ps.Posts do
 
   ## Examples
 
-      iex> create_post(%{field: value})
+      iex> create_post_for_user(%{field: value})
       {:ok, %Post{}}
 
-      iex> create_post(%{field: bad_value})
+      iex> create_post_for_user(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
   def create_post_for_user(current_user, attrs \\ %{}) do
-    Ecto.build_assoc(current_user, :posts)
-    |> Post.changeset(attrs)
-    |> Repo.insert()
+    with :ok <- Policy.authorize(:post_create, current_user) do
+      Ecto.build_assoc(current_user, :posts)
+      |> Post.changeset(attrs)
+      |> Repo.insert()
+    end
   end
 
   @doc """
@@ -91,6 +118,14 @@ defmodule Ps.Posts do
     |> Repo.update()
   end
 
+  def update_post_for_user(%Post{} = post, current_user, attrs) do
+    with :ok <- Policy.authorize(:post_update, current_user, post) do
+      post
+      |> Post.changeset(attrs)
+      |> Repo.update()
+    end
+  end
+
   @doc """
   Deletes a post.
 
@@ -105,6 +140,12 @@ defmodule Ps.Posts do
   """
   def delete_post(%Post{} = post) do
     Repo.delete(post)
+  end
+
+  def delete_post_for_user(%Post{} = post, current_user) do
+    with :ok <- Policy.authorize(:post_delete, current_user, post) do
+      Repo.delete(post)
+    end
   end
 
   @doc """
