@@ -18,6 +18,7 @@ defmodule PsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :other
+    live "/live", PageLive, :other
   end
 
   # Other scopes may use custom stacks.
