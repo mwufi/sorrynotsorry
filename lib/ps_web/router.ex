@@ -15,6 +15,8 @@ defmodule PsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug :fetch_current_user
   end
 
   scope "/", PsWeb do
@@ -28,9 +30,11 @@ defmodule PsWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PsWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PsWeb do
+    pipe_through :api
+
+    post "/posts", PostApiController, :create
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:ps, :dev_routes) do

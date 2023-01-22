@@ -59,8 +59,33 @@ const editor = new Editor({
 
 // save editor content
 const saveButton = document.querySelector("#save-button")
-saveButton.addEventListener("click", () => {
+const SERVER_URL = "http://localhost:4000/api/posts"
+saveButton.addEventListener("click", async () => {
   console.log(editor.getHTML())
+
+  bodyObj = {
+    post: {
+      title: "test",
+      subtitle: "test",
+      content: editor.getHTML(),
+      is_draft: false,
+    },
+  }
+
+  const response = await fetch(SERVER_URL, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(bodyObj),
+    credentials: "include",
+  })
+
+  response.json().then(data => {
+    console.log(data)
+    window.location.replace("http://localhost:4000/posts")
+  })
 })
 
 console.log("end of script!")
