@@ -14,24 +14,22 @@
       </p>
     </div>
     <div class="flex items-center gap-4">
-      <a
-        href="https://twitter.com/elixirphoenix"
-        class="text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
-      >
-        @elixirphoenix
-      </a>
-      <a
-        href="https://github.com/phoenixframework/phoenix"
-        class="text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
-      >
-        GitHub
-      </a>
-      <a
-        href="https://hexdocs.pm/phoenix/overview.html"
-        class="rounded-lg bg-zinc-100 px-2 py-1 text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:bg-zinc-200/80 active:text-zinc-900/70"
-      >
-        Get Started <span aria-hidden="true">&rarr;</span>
-      </a>
+      <%= if @current_user do %>
+        <.link href={~p"/"} class={"text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:text-zinc-700"}>
+          Home
+        </.link>
+        <.link href={~p"/users/settings"} class={"text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:text-zinc-700"}>
+          <%= @current_user.email %>
+        </.link>
+        <.link href={~p"/users/log_out"} method="delete" class="rounded-lg bg-zinc-100 px-2 py-1 text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:bg-zinc-200/80 active:text-zinc-900/70">
+          Log out
+        </.link>
+      <% else %>
+        <.link href={~p"/users/register"} class="text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:text-zinc-700">Register</.link>
+        <.link href={~p"/users/log_in"} class="rounded-lg bg-zinc-100 px-2 py-1 text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:bg-zinc-200/80 active:text-zinc-900/70">
+          Log in <span aria-hidden="true">&rarr;</span>
+        </.link>
+      <% end %>
     </div>
   </div>
 </header>
