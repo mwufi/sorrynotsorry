@@ -1,3 +1,7 @@
+<%= if assigns[:user_style] do %>
+<style><%= raw(@user_style) %></style>
+<% end %>
+
 <div class="markdown-body">
 
 <%= raw(Earmark.as_html!(@markdown_blurb)) %>
@@ -6,15 +10,5 @@
 <img src="https://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg" alt="a picture of a puppy" />
 
 <p>here's a link to <a href="https://www.google.com">google</a></p>
-
-<p>oh yeah. that's right. it's also a phoenix server. so we can do things like this</p>
-
-<button class='px-4 py-2 border mb-4' phx-click="click" value="1">Click me!</button>
-
-<blockquote>
-    <p>here's a block quote</p>
-    <p>here's a block quote</p>
-    <p>here's a block quote</p>
-    </blockquote>
 
 </div>
