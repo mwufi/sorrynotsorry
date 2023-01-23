@@ -4,7 +4,7 @@ defmodule PsWeb.PageController do
   def home(conn, _params) do
     # The home page is often custom made,
     # so skip the default app layout.
-    render(conn, :home, layout: false)
+    render(conn, :home, layout: false, public_posts: Ps.Posts.list_public_posts())
   end
   def editor(conn, _params) do
     render(conn, :editor)
