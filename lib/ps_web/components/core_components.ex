@@ -384,15 +384,27 @@ defmodule PsWeb.CoreComponents do
   @doc """
   Renders a badge.
   """
+  attr(:color, :string, default: "green")
   slot(:inner_block, required: true)
 
   def badge(assigns) do
-    ~H"""
-    <span class={"bg-#{@color}-100 text-#{@color}-700 text-xs font-medium
-    mr-2 px-2.5 py-0.5 rounded border border-#{@color}-300"}>
-      <%= render_slot(@inner_block) %>
-    </span>
-    """
+    case assigns.color do
+      "green" ->
+        ~H"""
+        <span class={"bg-green-100 text-green-700 text-xs font-medium
+        mr-2 px-2.5 py-0.5 rounded border border-green-300"}>
+          <%= render_slot(@inner_block) %>
+        </span>
+        """
+
+      _ ->
+        ~H"""
+        <span class={"bg-yellow-100 text-yellow-700 text-xs font-medium
+        mr-2 px-2.5 py-0.5 rounded border border-yellow-300"}>
+          <%= render_slot(@inner_block) %>
+        </span>
+        """
+    end
   end
 
   @doc """
@@ -429,7 +441,7 @@ defmodule PsWeb.CoreComponents do
           <%= render_slot(@subtitle) %>
         </p>
       </div>
-      <%!-- <div class="flex-none"><%= render_slot(@actions) %></div> --%>
+      <div class="flex-none"><%= render_slot(@actions) %></div>
     </header>
     """
   end

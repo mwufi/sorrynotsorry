@@ -49,13 +49,22 @@
       Welcome to Bird!
     </p>
     <p class="mt-4 text-base leading-7 text-zinc-600">
-    Have you ever wanted your site to feel like a live space, with music, and chat with people visiting your site? Or send out newsletters? Well, now you can! Make your home. With Bird, you can make a personal site that feels like a home, with music, chat, and more!
+    <%= @message %>
     </p>
 
     <div class="mt-6"></div>
-    <.link href={~p"/users/log_in"}>
+    <%= if @current_user do %>
+     <.link href={~p"/posts"}>
+      <.button class="bg-purple-400">See Your Posts</.button>
+    </.link>
+     <.link href={~p"/editor"}>
+      <.button class="bg-purple-400">Editor</.button>
+    </.link>
+    <% else %>
+    <.link href={~p"/users/register"}>
       <.button class="bg-purple-400">Sign up!</.button>
     </.link>
+    <% end %>
 
     <.table id="posts" rows={@public_posts} row_click={&JS.navigate(~p"/posts/#{&1}")}>
       <:col :let={post} label="Recent Blogs"><%= post.title %></:col>
