@@ -84,7 +84,7 @@ window.updatePost = async id => {
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      window.location.reload()
+      window.location.replace("http://localhost:4000/posts")
       alert("Successfully edited!")
     })
 }

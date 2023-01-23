@@ -22,7 +22,7 @@ defmodule PsWeb.Router do
   scope "/", PsWeb do
     pipe_through :browser
 
-    get "/", PageController, :other
+    get "/", PageController, :home
     get "/editor", PageController, :editor
     live "/live", PageLive, :other
 
