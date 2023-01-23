@@ -4,6 +4,12 @@
   </.link>
 <% end %>
 
+<%= if @post.permalink do %>
+Permalink: <.link href={~p"/p/#{@post.permalink}"} class="underline text-purple-500 px-1">
+/p/<%= @post.permalink %>
+</.link>
+<% end %>
+
 <.header class="markdown-body">
   <%= @post.title %>
   <:subtitle><%= @post.subtitle %></:subtitle>

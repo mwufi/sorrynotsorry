@@ -23,6 +23,7 @@ defmodule PsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/p/:permalink", PostController, :show_permalink
     get "/editor", PageController, :editor
     live "/live", PageLive, :other
 

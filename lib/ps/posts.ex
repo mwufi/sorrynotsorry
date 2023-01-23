@@ -63,6 +63,13 @@ defmodule Ps.Posts do
   end
 
   @doc """
+  Find a public post by permalink.
+  """
+  def get_post_by_permalink(permalink) do
+    Post |> where(permalink: ^permalink) |> where(is_draft: false) |> Repo.one()
+  end
+
+  @doc """
   Creates a post.
 
   ## Examples
@@ -122,6 +129,7 @@ defmodule Ps.Posts do
     with :ok <- Policy.authorize(:post_update, current_user, post) do
       post
       |> Post.changeset(attrs)
+      |> IO.inspect(label: "update_post")
       |> Repo.update()
     end
   end

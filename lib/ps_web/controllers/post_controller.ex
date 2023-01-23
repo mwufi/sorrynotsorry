@@ -37,6 +37,21 @@ defmodule PsWeb.PostController do
     end
   end
 
+  def show_permalink(conn, %{"permalink" => permalink}) do
+    post = Posts.get_post_by_permalink(permalink)
+
+    if post == nil do
+      conn
+      |> put_flash(:error, "Post not found.")
+      |> redirect(to: "/posts")
+    else
+      can_edit =
+        conn.assigns.current_user != nil and conn.assigns.current_user.id == post.author_id
+
+      render(conn, :show, post: post, can_edit: can_edit)
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     case Posts.get_post_for_user(conn.assigns.current_user, id) do
       {:ok, post} ->
