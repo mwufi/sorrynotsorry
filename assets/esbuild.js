@@ -20,7 +20,6 @@ let opts = {
 }
 if (mode === "watch") {
   opts = {
-    watch: true,
     sourcemap: "inline",
     ...opts,
   }
