@@ -114,7 +114,6 @@ window.save = async () => {
 
   response.json().then(data => {
     console.log(data)
-    alert("hi")
     window.location.replace("/posts")
   })
 }
