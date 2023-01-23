@@ -34,6 +34,7 @@ defmodule PsWeb.Router do
     pipe_through :api
 
     post "/posts", PostApiController, :create
+    patch "/posts/:id", PostApiController, :update
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

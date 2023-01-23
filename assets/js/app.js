@@ -52,16 +52,46 @@ import Typography from "@tiptap/extension-typography"
 const editor = new Editor({
   element: document.querySelector(".element"),
   extensions: [StarterKit, Highlight, Typography],
-  content:
-    "<p><strong>read a danmei novel that is not wuxia, xianxia, or xuanhuan</strong></p><p><em>how do aspects of worldbuilding differ across genres? what new aspects of culture, character, or language do you observe in a different genre setting? how much character or worldbuilding do you think is attributable to genre convention, and how much isn’t? what do you think readers find attractive about wuxia/xianxia/xuanhuan settings? what do you think readers find attractive about other genres?</em></p><p><strong>read a danmei novel set in modern day China</strong></p><p><em>how do the emotional and narrative stakes of novels change depending on time period? what were you surprised by? what similarities or resonances did you recognize between the text and your own life? how does the fabric of the setting in this novel differ from novels set in other time periods and settings? in what ways do class and power factor into character conflicts and relationships? how do these differ from the way class and power are addressed in historical novels? what is the role of tradition and history in this novel? do you find the text more realistic because it’s set in modern day? why or why not? how important do you think “realism” is to the text and the readers? why might this be? how important is “realism” to your reading experience? why might this be?</em></p><p></p>",
+  content: document.querySelector(".post-content").innerHTML,
   placeholder: "Write something …",
 })
 
 // save editor content
-const saveButton = document.querySelector("#save-button")
-const SERVER_URL = "http://localhost:4000/api/posts"
-saveButton.addEventListener("click", async () => {
+// const saveButton = document.querySelector("#save-button")
+
+// saveButton.addEventListener("click")
+
+window.updatePost = async id => {
+  const SERVER_URL = `http://localhost:4000/api/posts/${id}`
   console.log(editor.getHTML())
+
+  bodyObj = {
+    id: id,
+    post: {
+      content: editor.getHTML(),
+    },
+  }
+
+  await fetch(SERVER_URL, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(bodyObj),
+    credentials: "include",
+  })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      window.location.reload()
+      alert("Successfully edited!")
+    })
+}
+
+window.save = async () => {
+  console.log(editor.getHTML())
+  const SERVER_URL = `http://localhost:4000/api/posts`
 
   bodyObj = {
     post: {
@@ -86,6 +116,6 @@ saveButton.addEventListener("click", async () => {
     console.log(data)
     window.location.replace("http://localhost:4000/posts")
   })
-})
+}
 
 console.log("end of script!")
