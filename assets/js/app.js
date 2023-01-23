@@ -62,7 +62,7 @@ const editor = new Editor({
 // saveButton.addEventListener("click")
 
 window.updatePost = async id => {
-  const SERVER_URL = `http://localhost:4000/api/posts/${id}`
+  const SERVER_URL = `/api/posts/${id}`
   console.log(editor.getHTML())
 
   bodyObj = {
@@ -84,14 +84,14 @@ window.updatePost = async id => {
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      window.location.replace("http://localhost:4000/posts")
+      window.location.replace("/posts")
       alert("Successfully edited!")
     })
 }
 
 window.save = async () => {
   console.log(editor.getHTML())
-  const SERVER_URL = `http://localhost:4000/api/posts`
+  const SERVER_URL = `/api/posts`
 
   bodyObj = {
     post: {
@@ -114,7 +114,8 @@ window.save = async () => {
 
   response.json().then(data => {
     console.log(data)
-    window.location.replace("http://localhost:4000/posts")
+    alert("hi")
+    window.location.replace("/posts")
   })
 }
 
