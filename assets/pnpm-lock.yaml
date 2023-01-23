@@ -5,12 +5,22 @@ specifiers:
   '@tiptap/extension-highlight': 2.0.0-beta.209
   '@tiptap/extension-typography': 2.0.0-beta.209
   '@tiptap/starter-kit': 2.0.0-beta.209
+  esbuild: ^0.12.24
+  phoenix: file:../deps/phoenix
+  phoenix_html: file:../deps/phoenix_html
+  phoenix_live_view: file:../deps/phoenix_live_view
 
 dependencies:
   '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
   '@tiptap/extension-highlight': 2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua
   '@tiptap/extension-typography': 2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua
   '@tiptap/starter-kit': 2.0.0-beta.209_cedpvvjbghtcstt37fejh4i2nq
+  phoenix: file:../deps/phoenix
+  phoenix_html: file:../deps/phoenix_html
+  phoenix_live_view: file:../deps/phoenix_live_view
+
+devDependencies:
+  esbuild: 0.12.29
 
 packages:
 
@@ -239,6 +249,12 @@ packages:
       - prosemirror-view
     dev: false
 
+  /esbuild/0.12.29:
+    resolution: {integrity: sha512-w/XuoBCSwepyiZtIRsKsetiLDUVGPVw1E/R3VTFSecIy8UR7Cq3SOtwKHJMFoVqqVG36aGkzh4e8BvpO1Fdc7g==}
+    hasBin: true
+    requiresBuild: true
+    dev: true
+
   /orderedmap/2.1.0:
     resolution: {integrity: sha512-/pIFexOm6S70EPdznemIz3BQZoJ4VTFrhqzu0ACBqBgeLsLxq8e6Jim63ImIfwW/zAD1AlXpRMlOv3aghmo4dA==}
     dev: false
@@ -325,4 +341,22 @@ packages:
 
   /w3c-keyname/2.2.6:
     resolution: {integrity: sha512-f+fciywl1SJEniZHD6H+kUO8gOnwIr7f4ijKA6+ZvJFjeGi1r4PDLl53Ayud9O/rk64RqgoQine0feoeOU0kXg==}
+    dev: false
+
+  file:../deps/phoenix:
+    resolution: {directory: ../deps/phoenix, type: directory}
+    name: phoenix
+    version: 1.7.0-rc.2
+    dev: false
+
+  file:../deps/phoenix_html:
+    resolution: {directory: ../deps/phoenix_html, type: directory}
+    name: phoenix_html
+    version: 3.2.0
+    dev: false
+
+  file:../deps/phoenix_live_view:
+    resolution: {directory: ../deps/phoenix_live_view, type: directory}
+    name: phoenix_live_view
+    version: 0.18.11
     dev: false

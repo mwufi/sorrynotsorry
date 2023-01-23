@@ -25,7 +25,8 @@ config :ps, PsWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "AiviWs0GKtsx0rZy5ZkelfveOHGnjG0UawO79lZ3qgb7ueHBd8ByTC8+b/6zRjQp",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    # esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    node: ["esbuild.js", "--watch", cd: Path.expand("../assets", __DIR__)],
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
