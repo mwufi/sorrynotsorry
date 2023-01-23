@@ -2,15 +2,20 @@
   <%= @post.title %>
   <:subtitle><%= @post.subtitle %></:subtitle>
   <:actions>
-    <.link href={~p"/posts/#{@post}/edit"}>
-      <.button>Edit metadata</.button>
-    </.link>
+    <%= if @can_edit do %>
+      <.link href={~p"/posts/#{@post}/edit"}>
+        <.button>Edit metadata</.button>
+      </.link>
+    <% end %>
   </:actions>
 </.header>
 
 <div class="element markdown-body mt-6 border-t-2 border-gray-100 pt-6"></div>
 
 <div class="hidden post-content"><%= raw @post.content %></div>
+
+<%= if @can_edit do %>
 <button class="px-4 py-2 border mb-4" id="save-button" onclick={"updatePost(" <> Integer.to_string(@post.id) <> ")"}>Save</button>
+<% end %>
 
 <.back navigate={~p"/posts"}>Back to posts</.back>

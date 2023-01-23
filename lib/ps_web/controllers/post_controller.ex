@@ -40,7 +40,10 @@ defmodule PsWeb.PostController do
   def show(conn, %{"id" => id}) do
     case Posts.get_post_for_user(conn.assigns.current_user, id) do
       {:ok, post} ->
-        render(conn, :show, post: post)
+        can_edit =
+          conn.assigns.current_user != nil and conn.assigns.current_user.id == post.author_id
+
+        render(conn, :show, post: post, can_edit: can_edit)
 
       {:error, :unauthorized} ->
         IO.puts("unauthorized!!!")
