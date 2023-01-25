@@ -48,18 +48,53 @@ import {Editor} from "@tiptap/core"
 import StarterKit from "@tiptap/starter-kit"
 import Highlight from "@tiptap/extension-highlight"
 import Typography from "@tiptap/extension-typography"
+import Gapcursor from "@tiptap/extension-gapcursor"
+import Link from "@tiptap/extension-link"
+import {Extension} from "@tiptap/core"
+
+const CustomExtension = Extension.create({
+  onCreate() {
+    // The editor is ready.
+    console.log("your editor is ready!")
+  },
+  onUpdate() {
+    // The content has changed.
+  },
+  onSelectionUpdate({editor}) {
+    // The selection has changed.
+  },
+  onTransaction({transaction}) {
+    // The editor state has changed.
+  },
+  onFocus({event}) {
+    // The editor is focused.
+  },
+  onBlur({event}) {
+    // The editor isn’t focused anymore.
+  },
+  onDestroy() {
+    // The editor is being destroyed.
+  },
+})
+
+const CustomLink = Link.extend({
+  addKeyboardShortcuts() {
+    return {
+      "Mod-k": () => {
+        console.log("aaaaa")
+        this.editor.commands.setLink({href: "https://tiptap.dev"})
+      },
+    }
+  },
+})
 
 const editor = new Editor({
   element: document.querySelector(".element"),
-  extensions: [StarterKit, Highlight, Typography],
+  extensions: [StarterKit, Highlight, Typography, CustomLink, CustomExtension, Gapcursor],
   content: document.querySelector(".post-content").innerHTML,
   placeholder: "Write something …",
 })
 
-// save editor content
-// const saveButton = document.querySelector("#save-button")
-
-// saveButton.addEventListener("click")
 
 window.updatePost = async id => {
   const SERVER_URL = `/api/posts/${id}`

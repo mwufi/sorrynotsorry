@@ -8,13 +8,18 @@
     "watch": "node esbuild.js --watch"
   },
   "dependencies": {
+    "@tiptap/core": "2.0.0-beta.209",
+    "@tiptap/extension-gapcursor": "2.0.0-beta.209",
+    "@tiptap/extension-highlight": "2.0.0-beta.209",
+    "@tiptap/extension-link": "2.0.0-beta.209",
+    "@tiptap/extension-mention": "2.0.0-beta.209",
+    "@tiptap/extension-typography": "2.0.0-beta.209",
+    "@tiptap/starter-kit": "2.0.0-beta.209",
+    "@tiptap/suggestion": "2.0.0-beta.209",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
-    "@tiptap/core": "2.0.0-beta.209",
-    "@tiptap/extension-highlight": "2.0.0-beta.209",
-    "@tiptap/extension-typography": "2.0.0-beta.209",
-    "@tiptap/starter-kit": "2.0.0-beta.209"
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "esbuild": "^0.17.4"

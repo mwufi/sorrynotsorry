@@ -78,8 +78,9 @@ ul :last-child, ol :last-child {
 
 .markdown-body a {
   background-color: transparent;
-  color: #0969da;
-  text-decoration: none;
+  color: var(--quote-color-alt);
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .markdown-body a:active,
