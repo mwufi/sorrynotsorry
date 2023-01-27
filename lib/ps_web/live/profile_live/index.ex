@@ -6,7 +6,7 @@ defmodule PsWeb.ProfileLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :profiles, list_profiles())}
+    {:ok, assign(socket, profiles: list_profiles(), page_title: "Click Friends")}
   end
 
   @impl true
@@ -28,7 +28,7 @@ defmodule PsWeb.ProfileLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Profiles")
+    |> assign(:page_title, "Click Friends")
     |> assign(:profile, nil)
   end
 
