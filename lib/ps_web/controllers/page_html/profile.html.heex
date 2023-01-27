@@ -49,10 +49,10 @@
     <div class="text-xs uppercase text-slate-500 my-2">
       <%= post.inserted_at |> Calendar.strftime("%b %d") %>
     </div>
-    <div class="border bg-white rounded-xl p-6 px-8 hover:cursor-pointer mb-10" phx-click={JS.navigate(~p"/posts/#{post.id}")}>
-      <div class="text-2xl">
+    <div class="border bg-white rounded-xl p-6 px-8 hover:cursor-pointer mb-10 markdown-body" phx-click={JS.navigate(~p"/posts/#{post.id}")}>
+      <h1 class="title text-2xl">
         <%= post.title %>
-      </div>
+      </h1>
       <div class="text-zinc-500">
         <%= post.content |> raw %>
       </div>
