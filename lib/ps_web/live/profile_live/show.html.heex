@@ -1,6 +1,6 @@
 <.header>
-  Profile <%= @profile.id %>
-  <:subtitle>This is a profile record from your database.</:subtitle>
+  @<%= @profile.username %>
+  <:subtitle>This is where you can edit your profile</:subtitle>
   <:actions>
     <.link patch={~p"/profiles/#{@profile}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit profile</.button>
@@ -8,12 +8,22 @@
   </:actions>
 </.header>
 
-<.list>
-  <:item title="Username"><%= @profile.username %></:item>
-  <:item title="Name"><%= @profile.name %></:item>
-  <:item title="Bio"><%= @profile.bio %></:item>
-  <:item title="Avatar url"><%= @profile.avatar_url %></:item>
-</.list>
+<div class="container max-w-3xl mx-auto flex flex-col items-center my-20">
+  <div class="img p-2 m-4">
+    <img src={@profile.avatar_url} class="w-full object-cover rounded-full w-32 h-32">
+  </div>
+  <div>
+    <h1 class="text-5xl font-bold text-zinc-800">
+      <%= @profile.name %>
+    </h1>
+    <div class="text-zinc-500">
+      @<%= @profile.username %>
+    </div>
+  </div>
+  <div class="whitespace-pre-wrap text-zinc-500">
+    <%= @profile.bio |> String.trim %>
+  </div>
+</div>
 
 <.back navigate={~p"/profiles"}>Back to profiles</.back>
 
