@@ -1,0 +1,41 @@
+<.header>
+  Listing Links
+  <:actions>
+    <.link patch={~p"/links/new"}>
+      <.button>New Link</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="links" rows={@links} row_click={&JS.navigate(~p"/links/#{&1}")}>
+  <:col :let={link} label="Name"><%= link.name %></:col>
+  <:col :let={link} label="Href"><%= link.href %></:col>
+  <:col :let={link} label="Click count"><%= link.click_count %></:col>
+  <:action :let={link}>
+    <div class="sr-only">
+      <.link navigate={~p"/links/#{link}"}>Show</.link>
+    </div>
+    <.link patch={~p"/links/#{link}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={link}>
+    <.link phx-click={JS.push("delete", value: %{id: link.id})} data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="link-modal"
+  show
+  on_cancel={JS.navigate(~p"/links")}
+>
+  <.live_component
+    module={PsWeb.LinkLive.FormComponent}
+    id={@link.id || :new}
+    title={@page_title}
+    action={@live_action}
+    link={@link}
+    navigate={~p"/links"}
+  />
+</.modal>
