@@ -158,7 +158,11 @@ window.save = async () => {
 
   response.json().then(data => {
     console.log(data)
-    window.location.replace("/posts")
+    if (data.id) {
+      window.location.replace(`/posts/${data.id}`)
+    } else {
+      window.location.replace(`/posts`)
+    }
   })
 }
 

@@ -27,7 +27,8 @@ defmodule PsWeb.Router do
     get "/editor", PageController, :editor
     live "/live", PageLive, :other
 
-    resources "/posts", PostController, only: [:index, :new, :show]
+    get "/posts/new", PageController, :editor
+    resources "/posts", PostController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
