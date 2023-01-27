@@ -1,5 +1,5 @@
 <.header>
-  Listing Profiles
+  People You May Click
   <:actions>
     <.link patch={~p"/profiles/new"}>
       <.button>New Profile</.button>
@@ -8,10 +8,20 @@
 </.header>
 
 <.table id="profiles" rows={@profiles} row_click={&JS.navigate(~p"/@#{&1.username}")}>
-  <:col :let={profile} label="Username"><%= profile.username %></:col>
-  <:col :let={profile} label="Name"><%= profile.name %></:col>
-  <:col :let={profile} label="Bio"><%= profile.bio %></:col>
-  <:col :let={profile} label="Avatar url"><%= profile.avatar_url %></:col>
+  <:col :let={profile} label="Find Friends!">
+    <div class="flex">
+      <div>
+        <img src={profile.avatar_url} class="h-16 w-16 rounded-full" />
+      </div>
+      <div class="ml-4">
+        <div class="text-lg font-medium">
+          <%= profile.name %>
+        </div>
+        <div class="text-gray-500 pb-3">@<%= profile.username %></div>
+        <div class="text-gray-500 font-normal"><%= profile.bio %></div>
+      </div>
+    </div>
+  </:col>
   <:action :let={profile}>
     <div class="sr-only">
       <.link navigate={~p"/@#{profile.username}"}>Show</.link>
