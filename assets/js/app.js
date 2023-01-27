@@ -50,32 +50,9 @@ import Highlight from "@tiptap/extension-highlight"
 import Typography from "@tiptap/extension-typography"
 import Gapcursor from "@tiptap/extension-gapcursor"
 import Link from "@tiptap/extension-link"
-import {Extension} from "@tiptap/core"
-
-const CustomExtension = Extension.create({
-  onCreate() {
-    // The editor is ready.
-    console.log("your editor is ready!")
-  },
-  onUpdate() {
-    // The content has changed.
-  },
-  onSelectionUpdate({editor}) {
-    // The selection has changed.
-  },
-  onTransaction({transaction}) {
-    // The editor state has changed.
-  },
-  onFocus({event}) {
-    // The editor is focused.
-  },
-  onBlur({event}) {
-    // The editor isn’t focused anymore.
-  },
-  onDestroy() {
-    // The editor is being destroyed.
-  },
-})
+import YouTube from "./editor/extensions/lite-youtube"
+import Image from "./editor/extensions/image-upload"
+import CharacterCount from "@tiptap/extension-character-count"
 
 const CustomLink = Link.extend({
   addKeyboardShortcuts() {
@@ -88,13 +65,45 @@ const CustomLink = Link.extend({
   },
 })
 
+// See better implementation for this part
+// https://kailaash.medium.com/copy-or-drag-and-drop-multiple-images-to-tiptap-editor-for-vue-3bdce8bf7e38
+const uploadImage = async image => {
+  console.log("uploading", image)
+
+  // for now, just return the base64 encoded image
+  const fileReader = new FileReader()
+  const myPromise = new Promise((resolve, reject) => {
+    fileReader.readAsDataURL(image)
+    fileReader.onloadend = () => {
+      resolve(fileReader.result)
+    }
+  })
+  return myPromise
+}
+
 const editor = new Editor({
   element: document.querySelector(".element"),
-  extensions: [StarterKit, Highlight, Typography, CustomLink, CustomExtension, Gapcursor],
+  extensions: [
+    StarterKit,
+    Highlight,
+    Typography,
+    CustomLink,
+    YouTube,
+    CharacterCount,
+    Image.configure({uploader: uploadImage, allowBase64: true}),
+    Gapcursor,
+  ],
   content: document.querySelector(".post-content").innerHTML,
   placeholder: "Write something …",
 })
 
+window.addImage = async () => {
+  const url = window.prompt("URL")
+
+  if (url) {
+    editor.chain().focus().setImage({src: url}).run()
+  }
+}
 
 window.updatePost = async id => {
   const SERVER_URL = `/api/posts/${id}`

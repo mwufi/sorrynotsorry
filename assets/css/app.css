@@ -8,3 +8,8 @@
 .ProseMirror:focus {
     outline: none;
 }
+
+.ProseMirror-selectednode {
+outline: 3px solid #68cef8;
+border-radius: 5px;
+}

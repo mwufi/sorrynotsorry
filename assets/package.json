@@ -8,9 +8,12 @@
     "watch": "node esbuild.js --watch"
   },
   "dependencies": {
+    "@justinribeiro/lite-youtube": "^1.4.0",
     "@tiptap/core": "2.0.0-beta.209",
+    "@tiptap/extension-character-count": "2.0.0-beta.209",
     "@tiptap/extension-gapcursor": "2.0.0-beta.209",
     "@tiptap/extension-highlight": "2.0.0-beta.209",
+    "@tiptap/extension-image": "2.0.0-beta.209",
     "@tiptap/extension-link": "2.0.0-beta.209",
     "@tiptap/extension-mention": "2.0.0-beta.209",
     "@tiptap/extension-typography": "2.0.0-beta.209",
@@ -19,6 +22,7 @@
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
+    "prosemirror-state": "^1.4.2",
     "tippy.js": "^6.3.7"
   },
   "devDependencies": {

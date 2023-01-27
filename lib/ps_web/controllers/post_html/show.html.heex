@@ -22,6 +22,9 @@ Permalink: <.link href={~p"/p/#{@post.permalink}"} class="underline text-purple-
 
 <%= if @can_edit do %>
 <button class="px-4 py-2 border mb-4" id="save-button" onclick={"updatePost(" <> Integer.to_string(@post.id) <> ")"}>Save</button>
+<button class="px-4 py-2 border mb-4" id="add-image-button" onclick="addImage()">
+add an image
+</button>
 <% end %>
 
 <.back navigate={~p"/posts"}>Back to posts</.back>

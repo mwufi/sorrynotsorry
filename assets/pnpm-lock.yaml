@@ -1,9 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@justinribeiro/lite-youtube': ^1.4.0
   '@tiptap/core': 2.0.0-beta.209
+  '@tiptap/extension-character-count': 2.0.0-beta.209
   '@tiptap/extension-gapcursor': 2.0.0-beta.209
   '@tiptap/extension-highlight': 2.0.0-beta.209
+  '@tiptap/extension-image': 2.0.0-beta.209
   '@tiptap/extension-link': 2.0.0-beta.209
   '@tiptap/extension-mention': 2.0.0-beta.209
   '@tiptap/extension-typography': 2.0.0-beta.209
@@ -13,12 +16,16 @@ specifiers:
   phoenix: file:../deps/phoenix
   phoenix_html: file:../deps/phoenix_html
   phoenix_live_view: file:../deps/phoenix_live_view
+  prosemirror-state: ^1.4.2
   tippy.js: ^6.3.7
 
 dependencies:
+  '@justinribeiro/lite-youtube': 1.4.0
   '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+  '@tiptap/extension-character-count': 2.0.0-beta.209_tasdqzysbe2xhn7sbwmhtfw24q
   '@tiptap/extension-gapcursor': 2.0.0-beta.209_v2bfq5maicdelkbmqszbe5xqhy
   '@tiptap/extension-highlight': 2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua
+  '@tiptap/extension-image': 2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua
   '@tiptap/extension-link': 2.0.0-beta.209_tasdqzysbe2xhn7sbwmhtfw24q
   '@tiptap/extension-mention': 2.0.0-beta.209_gwrkjopamtxlesrqkuh2c3jnom
   '@tiptap/extension-typography': 2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua
@@ -27,6 +34,7 @@ dependencies:
   phoenix: file:../deps/phoenix
   phoenix_html: file:../deps/phoenix_html
   phoenix_live_view: file:../deps/phoenix_live_view
+  prosemirror-state: 1.4.2
   tippy.js: 6.3.7
 
 devDependencies:
@@ -232,6 +240,10 @@ packages:
     dev: true
     optional: true
 
+  /@justinribeiro/lite-youtube/1.4.0:
+    resolution: {integrity: sha512-gBuSAPla3oPLV9i2K02/x95KQWlV9rMp42Cy74s6m0WldORSAL/YvRcdK0phwwpPMJJVNsiHZvzZFa1I62LoGQ==}
+    dev: false
+
   /@popperjs/core/2.11.6:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
@@ -278,6 +290,18 @@ packages:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
       '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+    dev: false
+
+  /@tiptap/extension-character-count/2.0.0-beta.209_tasdqzysbe2xhn7sbwmhtfw24q:
+    resolution: {integrity: sha512-ejye00l40wwzycNj86fHbWxngl8IiE+eQm1juUGK0ztR+r/P4MpgdeatjTLchtY79wd9qR3hON2+pcNwy9KKew==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.193
+      prosemirror-model: ^1.18.1
+      prosemirror-state: ^1.4.1
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      prosemirror-model: 1.19.0
+      prosemirror-state: 1.4.2
     dev: false
 
   /@tiptap/extension-code-block/2.0.0-beta.209_prfudu5zgovreazvyjp3brspre:
@@ -368,6 +392,14 @@ packages:
     dependencies:
       '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
       prosemirror-state: 1.4.2
+    dev: false
+
+  /@tiptap/extension-image/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
+    resolution: {integrity: sha512-Erjs9/vRud5TYATt7gJ1cBPNp0LAxtQ4mYZ+6Avpu0FfOWDv9WHXGtV85vJnbqKkRBf031L3dfLnYZPhTkS2sQ==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.193
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
     dev: false
 
   /@tiptap/extension-italic/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
