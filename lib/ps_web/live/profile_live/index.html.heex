@@ -7,16 +7,16 @@
   </:actions>
 </.header>
 
-<.table id="profiles" rows={@profiles} row_click={&JS.navigate(~p"/profiles/#{&1}")}>
+<.table id="profiles" rows={@profiles} row_click={&JS.navigate(~p"/@#{&1.username}")}>
   <:col :let={profile} label="Username"><%= profile.username %></:col>
   <:col :let={profile} label="Name"><%= profile.name %></:col>
   <:col :let={profile} label="Bio"><%= profile.bio %></:col>
   <:col :let={profile} label="Avatar url"><%= profile.avatar_url %></:col>
   <:action :let={profile}>
     <div class="sr-only">
-      <.link navigate={~p"/profiles/#{profile}"}>Show</.link>
+      <.link navigate={~p"/@#{profile.username}"}>Show</.link>
     </div>
-    <.link patch={~p"/profiles/#{profile}/edit"}>Edit</.link>
+    <.link patch={~p"/@#{profile.username}/edit"}>Edit</.link>
   </:action>
   <:action :let={profile}>
     <.link phx-click={JS.push("delete", value: %{id: profile.id})} data-confirm="Are you sure?">

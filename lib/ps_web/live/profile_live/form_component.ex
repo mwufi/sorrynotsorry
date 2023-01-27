@@ -57,12 +57,25 @@ defmodule PsWeb.ProfileLive.FormComponent do
   end
 
   defp save_profile(socket, :edit, profile_params) do
+    old_username = socket.assigns.profile.username
+
     case Profiles.update_profile(socket.assigns.profile, profile_params) do
-      {:ok, _profile} ->
-        {:noreply,
-         socket
-         |> put_flash(:info, "Profile updated successfully")
-         |> push_navigate(to: socket.assigns.navigate)}
+      {:ok, profile} ->
+        case profile.username != old_username do
+          true ->
+            IO.inspect(profile, label: "new")
+
+            {:noreply,
+             socket
+             |> put_flash(:info, "Profile updated successfully")
+             |> push_navigate(to: ~p"/@#{profile.username}")}
+
+          false ->
+            {:noreply,
+             socket
+             |> put_flash(:info, "Profile updated successfully")
+             |> push_navigate(to: socket.assigns.navigate)}
+        end
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}

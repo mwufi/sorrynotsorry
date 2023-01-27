@@ -14,10 +14,10 @@ defmodule PsWeb.ProfileLive.Index do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
+  defp apply_action(socket, :edit, %{"username" => username}) do
     socket
     |> assign(:page_title, "Edit Profile")
-    |> assign(:profile, Profiles.get_profile!(id))
+    |> assign(:profile, Profiles.get_profile_by_username!(username))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -33,8 +33,8 @@ defmodule PsWeb.ProfileLive.Index do
   end
 
   @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    profile = Profiles.get_profile!(id)
+  def handle_event("delete", %{"username" => username}, socket) do
+    profile = Profiles.get_profile_by_username!(username)
     {:ok, _} = Profiles.delete_profile(profile)
 
     {:noreply, assign(socket, :profiles, list_profiles())}

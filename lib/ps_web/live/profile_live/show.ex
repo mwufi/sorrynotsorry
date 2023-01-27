@@ -9,11 +9,11 @@ defmodule PsWeb.ProfileLive.Show do
   end
 
   @impl true
-  def handle_params(%{"id" => id}, _, socket) do
+  def handle_params(%{"username" => username}, _, socket) do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:profile, Profiles.get_profile!(id))}
+     |> assign(:profile, Profiles.get_profile_by_username!(username))}
   end
 
   defp page_title(:show), do: "Show Profile"

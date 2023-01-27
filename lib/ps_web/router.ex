@@ -34,10 +34,11 @@ defmodule PsWeb.Router do
     # Show profiles
     live "/profiles", ProfileLive.Index, :index
     live "/profiles/new", ProfileLive.Index, :new
-    live "/profiles/:id/edit", ProfileLive.Index, :edit
+    live "/@:username/edit", ProfileLive.Index, :edit
 
-    live "/profiles/:id", ProfileLive.Show, :show
-    live "/profiles/:id/show/edit", ProfileLive.Show, :edit
+    live "/@:username", ProfileLive.Show, :show
+    live "/@:username", ProfileLive.Show, :show
+    live "/@:username/show/edit", ProfileLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

@@ -36,6 +36,7 @@ defmodule Ps.Profiles do
 
   """
   def get_profile!(id), do: Repo.get!(Profile, id)
+  def get_profile_by_username!(username), do: Repo.one(from p in Profile, where: p.username == ^username)
 
   @doc """
   Creates a profile.
