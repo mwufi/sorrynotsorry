@@ -37,7 +37,6 @@ defmodule PsWeb.Router do
     live "/@:username/edit", ProfileLive.Index, :edit
 
     live "/@:username", ProfileLive.Show, :show
-    live "/@:username", ProfileLive.Show, :show
     live "/@:username/show/edit", ProfileLive.Show, :edit
 
     # Profile links (temporary)
