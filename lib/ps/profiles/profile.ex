@@ -19,9 +19,24 @@ defmodule Ps.Profiles.Profile do
   def changeset(profile, attrs) do
     profile
     |> cast(attrs, [:username, :name, :bio, :avatar_url])
+    |> validate_username()
+    |> validate_required([:username, :name, :bio, :avatar_url])
+  end
+
+  @doc """
+  Changeset for registration.
+  """
+  def registration_changeset(profile, attrs) do
+    profile
+    |> cast(attrs, [:username])
+    |> validate_username()
+    |> validate_required([:username])
+  end
+
+  def validate_username(changeset, opts \\ []) do
+    changeset
     |> validate_format(:username, ~r/^[a-zA-Z0-9\.]*$/)
     |> unsafe_validate_unique(:username, Ps.Repo)
     |> unique_constraint(:username)
-    |> validate_required([:username, :name, :bio, :avatar_url])
   end
 end

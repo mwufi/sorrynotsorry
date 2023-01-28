@@ -23,7 +23,10 @@ defmodule PsWeb.UserLoginLive do
         as={:user}
         phx-update="ignore"
       >
-        <.input field={{f, :email}} type="email" label="Email" required />
+
+        <%= inputs_for f, :primary_profile, fn fp -> %>
+          <.input field={{fp, :username}} type="text" label="Username" required />
+        <% end %>
         <.input field={{f, :password}} type="password" label="Password" required />
 
         <:actions :let={f}>

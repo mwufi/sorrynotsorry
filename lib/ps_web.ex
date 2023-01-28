@@ -84,6 +84,10 @@ defmodule PsWeb do
     quote do
       # HTML escaping functionality
       import Phoenix.HTML
+
+      # Still need inputs_for for nested forms
+      import Phoenix.HTML.Form
+
       # Core UI components and translation
       import PsWeb.CoreComponents
       import PsWeb.Gettext

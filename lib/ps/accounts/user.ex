@@ -3,11 +3,13 @@ defmodule Ps.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field(:email, :string)
+    field(:email, :string, default: "untested@radar")
     field(:password, :string, virtual: true, redact: true)
     field(:hashed_password, :string, redact: true)
     field(:confirmed_at, :naive_datetime)
 
+    has_one(:primary_profile, Ps.Profiles.Profile)
+    has_many(:profiles, Ps.Profiles.Profile)
     has_many(:posts, Ps.Posts.Post, foreign_key: :author_id)
 
     timestamps()
@@ -38,8 +40,8 @@ defmodule Ps.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
-    |> validate_email(opts)
+    |> cast(attrs, [:password, :email])
+    |> cast_assoc(:primary_profile, with: &Ps.Profiles.Profile.registration_changeset/2)
     |> validate_password(opts)
   end
 

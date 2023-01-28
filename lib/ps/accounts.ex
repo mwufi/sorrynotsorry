@@ -7,6 +7,7 @@ defmodule Ps.Accounts do
   alias Ps.Repo
 
   alias Ps.Accounts.{User, UserToken, UserNotifier}
+  alias Ps.Profiles.Profile
 
   ## Database getters
 
@@ -24,6 +25,16 @@ defmodule Ps.Accounts do
   """
   def get_user_by_email(email) when is_binary(email) do
     Repo.get_by(User, email: email)
+  end
+
+  @doc """
+  Gets a user by username.
+  """
+  def get_user_by_username_and_password(username, password)
+      when is_binary(username) and is_binary(password) do
+    profile = Repo.get_by(Profile, username: username) |> Repo.preload(user: [:primary_profile])
+    user = profile.user
+    if User.valid_password?(user, password), do: user
   end
 
   @doc """
@@ -231,7 +242,7 @@ defmodule Ps.Accounts do
   """
   def get_user_by_session_token(token) do
     {:ok, query} = UserToken.verify_session_token_query(token)
-    Repo.one(query)
+    Repo.one(query) |> Repo.preload(:primary_profile)
   end
 
   @doc """
