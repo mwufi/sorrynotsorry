@@ -11,7 +11,6 @@ defmodule Ps.Policy.Checks do
   def own_resource(%User{id: id}, %Post{author_id: id}, _opts), do: true
 
   def own_resource(_, post, _) do
-    IO.inspect(post)
     IO.puts("own_resource false")
     false
   end
