@@ -3,6 +3,7 @@ defmodule PsWeb.LinkLive.Index do
 
   alias Ps.Links
   alias Ps.Links.Link
+  on_mount {PsWeb.UserAuth, :mount_current_user}
 
   @impl true
   def mount(_params, _session, socket) do

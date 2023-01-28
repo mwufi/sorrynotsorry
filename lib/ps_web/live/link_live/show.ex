@@ -2,6 +2,7 @@ defmodule PsWeb.LinkLive.Show do
   use PsWeb, :live_view
 
   alias Ps.Links
+  on_mount {PsWeb.UserAuth, :mount_current_user}
 
   @impl true
   def mount(_params, _session, socket) do

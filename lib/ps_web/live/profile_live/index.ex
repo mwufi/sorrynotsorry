@@ -3,6 +3,7 @@ defmodule PsWeb.ProfileLive.Index do
 
   alias Ps.Profiles
   alias Ps.Profiles.Profile
+  on_mount {PsWeb.UserAuth, :mount_current_user}
 
   @impl true
   def mount(_params, _session, socket) do
