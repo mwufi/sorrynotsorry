@@ -48,7 +48,8 @@ defmodule PsWeb.PostController do
       can_edit =
         conn.assigns.current_user != nil and conn.assigns.current_user.id == post.author_id
 
-      render(conn, :show, post: post, can_edit: can_edit)
+      author_profile = Posts.get_author_profile(post)
+      render(conn, :show, post: post, can_edit: can_edit, author_profile: author_profile)
     end
   end
 
@@ -58,7 +59,8 @@ defmodule PsWeb.PostController do
         can_edit =
           conn.assigns.current_user != nil and conn.assigns.current_user.id == post.author_id
 
-        render(conn, :show, post: post, can_edit: can_edit)
+        author_profile = Posts.get_author_profile(post)
+        render(conn, :show, post: post, can_edit: can_edit, author_profile: author_profile)
 
       {:error, :unauthorized} ->
         IO.puts("unauthorized!!!")

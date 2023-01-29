@@ -1,8 +1,10 @@
 <%= if @can_edit do %>
-  <.link href={~p"/posts/#{@post}/edit"} class="float-right">
+  <.link href={~p"/posts/#{@post}/edit"} class="fixed bottom-6 right-6">
     <.button>Edit metadata</.button>
   </.link>
 <% end %>
+
+<.small_header profile={@author_profile} padding="mb-8" />
 
 <%= if @post.permalink do %>
 Permalink: <.link href={~p"/p/#{@post.permalink}"} class="underline text-purple-500 px-1">
@@ -10,13 +12,16 @@ Permalink: <.link href={~p"/p/#{@post.permalink}"} class="underline text-purple-
 </.link>
 <% end %>
 
-<.header class="markdown-body">
+
+<%= if @post.title != "test" do %>
+<.header class="my-8">
   <%= @post.title %>
   <:subtitle><%= @post.subtitle %></:subtitle>
 </.header>
+<% end %>
 
 
-<div class="element markdown-body pt-6"></div>
+<div class="element markdown-body"></div>
 
 <div class="hidden post-content"><%= raw @post.content %></div>
 

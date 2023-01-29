@@ -69,6 +69,10 @@ defmodule Ps.Posts do
     Post |> where(permalink: ^permalink) |> where(is_draft: false) |> Repo.one()
   end
 
+  def get_author_profile(%Post{} = post) do
+    post |> Ecto.assoc([:author, :primary_profile]) |> Repo.one
+  end
+
   @doc """
   Creates a post.
 

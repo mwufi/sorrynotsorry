@@ -22,9 +22,9 @@ defmodule PsWeb.PageHTML do
         <Heroicons.globe_asia_australia class="h-6 w-6 stroke-current" />
         <div class="text-lg">Explore</div>
       </a>
-      <a class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
+      <a href="/posts" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
         <Heroicons.heart class="h-6 w-6 stroke-current" />
-        <div class="text-lg">Favorites</div>
+        <div class="text-lg">Your Posts</div>
       </a>
       <a class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
         <Heroicons.paper_airplane class="h-6 w-6 stroke-current" />
@@ -56,7 +56,7 @@ defmodule PsWeb.PageHTML do
 
      It's deliberately left ambiguous where souls go when they're gone.
      ",
-     "nothing has brought me more joy than seeing rian johnson say fuck you to the unflappable asshole bbc sherlock detective archetype and bringing back the righteous and unendingly kind columbo detective archetype "
+      "nothing has brought me more joy than seeing rian johnson say fuck you to the unflappable asshole bbc sherlock detective archetype and bringing back the righteous and unendingly kind columbo detective archetype "
     ]
 
     posts =
@@ -64,7 +64,7 @@ defmodule PsWeb.PageHTML do
       |> Enum.map(fn _ ->
         %{
           profile: %{
-            avatar:
+            avatar_url:
               "https://64.media.tumblr.com/366ca17098c950dc97847e6648eb5cad/3aa4f0cbad47e8d7-e7/s64x64u_c1/37bb852c2dda058e8cc29f2e6f29f22388f9764c.jpg",
             username: "blessyouhawkeye"
           },
@@ -73,12 +73,19 @@ defmodule PsWeb.PageHTML do
         }
       end)
 
+    assigns = Map.merge(assigns, %{posts: posts, text_posts: text_posts})
+
     ~H"""
-    <%= for text_post <- text_posts do %>
-    <.post type="text_post" text={text_post} comment="wow" profile={posts |> Enum.at(0) |> Map.get(:profile)}/>
+    <%= for text_post <- @text_posts do %>
+      <.post
+        type="text_post"
+        text={text_post}
+        comment="wow"
+        profile={@posts |> Enum.at(0) |> Map.get(:profile)}
+      />
     <% end %>
-    <%= for post <- posts do %>
-      <.post type="image_post" image={post.image} comment={post.comment} profile={post.profile}/>
+    <%= for post <- @posts do %>
+      <.post type="image_post" image={post.image} comment={post.comment} profile={post.profile} />
     <% end %>
     """
   end
@@ -87,18 +94,14 @@ defmodule PsWeb.PageHTML do
     ~H"""
     <div class="relative">
       <div class="bg-white rounded overflow-hidden">
-        <div class="post-header my-4 px-5 flex items-center">
-          <img src={@profile.avatar} class="w-8 h-8 rounded" />
-          <div class="font-bold text-gray-700 ml-3 text-sm"><%= @profile.username %></div>
-        </div>
-        <div class="text-gray-700 my-4 px-5 whitespace-pre-wrap"><%= @text |> String.trim %></div>
+        <.small_header profile={@profile}/>
+        <div class="text-gray-700 my-4 px-5 whitespace-pre-wrap"><%= @text |> String.trim() %></div>
         <div class="FOOTER p-4">
           <.comment text={@comment} />
           <a class="text-gray-400 text-sm mt-3 cursor-pointer hover:text-purple-400">View more...</a>
           <div class="text-gray-400 text-sm mt-3">1 hour ago</div>
-          <div class="spacer mb-6"/>
+          <div class="spacer mb-6" />
           <.action_bar />
-
         </div>
       </div>
     </div>
@@ -109,18 +112,14 @@ defmodule PsWeb.PageHTML do
     ~H"""
     <div class="relative">
       <div class="bg-white rounded overflow-hidden">
-        <div class="post-header my-4 px-5 flex items-center">
-          <img src={@profile.avatar} class="w-8 h-8 rounded" />
-          <div class="font-bold text-gray-700 ml-3 text-sm"><%= @profile.username %></div>
-        </div>
-        <img class="w-full" src={@image}/>
+        <.small_header profile={@profile}/>
+        <img class="w-full" src={@image} />
         <div class="FOOTER p-4">
           <.comment text={@comment} />
           <a class="text-gray-400 text-sm mt-3 cursor-pointer hover:text-purple-400">View more...</a>
           <div class="text-gray-400 text-sm mt-3">1 hour ago</div>
-          <div class="spacer mb-6"/>
+          <div class="spacer mb-6" />
           <.action_bar />
-
         </div>
       </div>
     </div>

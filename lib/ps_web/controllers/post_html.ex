@@ -1,5 +1,5 @@
 defmodule PsWeb.PostHTML do
   use PsWeb, :html
 
-  embed_templates "post_html/*"
+  embed_templates("post_html/*")
 end
