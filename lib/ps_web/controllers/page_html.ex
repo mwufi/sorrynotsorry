@@ -6,7 +6,7 @@ defmodule PsWeb.PageHTML do
   def nav_menu(assigns) do
     ~H"""
     <div class="LEFT-MENU flex-0 w-64 p-2 sticky top-0 max-h-screen">
-      <a class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
+      <a href="/" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
         <Heroicons.home class="h-6 w-6 stroke-current" />
         <div class="text-lg font-bold">Home</div>
       </a>
@@ -18,15 +18,15 @@ defmodule PsWeb.PageHTML do
         <Heroicons.magnifying_glass class="h-6 w-6 stroke-current" />
         <div class="text-lg">Search</div>
       </a>
-      <a class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
+      <a href="/profiles" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
         <Heroicons.globe_asia_australia class="h-6 w-6 stroke-current" />
-        <div class="text-lg">Explore</div>
+        <div class="text-lg">Everyone</div>
       </a>
       <a href="/posts" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
         <Heroicons.heart class="h-6 w-6 stroke-current" />
         <div class="text-lg">Your Posts</div>
       </a>
-      <a class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
+      <a href="/editor" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
         <Heroicons.paper_airplane class="h-6 w-6 stroke-current" />
         <div class="text-lg">Create</div>
       </a>
