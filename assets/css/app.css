@@ -17,3 +17,7 @@ border-radius: 5px;
 body {
     background-color: rgb(245, 243, 239);
 }
+
+html, body {
+    min-height: 100%;
+}
