@@ -33,8 +33,15 @@ defmodule Ps.Accounts do
   def get_user_by_username_and_password(username, password)
       when is_binary(username) and is_binary(password) do
     profile = Repo.get_by(Profile, username: username) |> Repo.preload(user: [:primary_profile])
-    user = profile.user
-    if User.valid_password?(user, password), do: user
+
+    case profile do
+      nil ->
+        nil
+
+      _ ->
+        user = profile.user
+        if User.valid_password?(user, password), do: user
+    end
   end
 
   @doc """
