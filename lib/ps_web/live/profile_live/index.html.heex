@@ -2,7 +2,7 @@
   People You May Click
 </.header>
 
-<.table id="profiles" rows={@profiles} row_click={&JS.navigate(~p"/@#{&1.username}")}>
+<.table id="profiles" rows={@profiles} row_click={&JS.navigate(~p"/#{&1.username}")}>
   <:col :let={profile} label="Find Friends!">
     <div class="flex">
       <div>
@@ -19,7 +19,7 @@
   </:col>
   <:action :let={profile}>
     <div class="sr-only">
-      <.link navigate={~p"/@#{profile.username}"}>Show</.link>
+      <.link navigate={~p"/#{profile.username}"}>Show</.link>
     </div>
   </:action>
 

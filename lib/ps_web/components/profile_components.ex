@@ -17,7 +17,7 @@ defmodule PsWeb.ProfileComponents do
       ~H"""
       <div class={"post-header #{assigns.padding} flex items-center"}>
         <img src={@profile.avatar_url} class="w-8 h-8 rounded" />
-        <.link href={~p"/@#{@profile.username}"} class="font-bold text-gray-700 ml-3 text-sm"><%= @profile.username %></.link>
+        <.link href={~p"/#{@profile.username}"} class="font-bold text-gray-700 ml-3 text-sm"><%= @profile.username %></.link>
       </div>
       """
     else

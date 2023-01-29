@@ -72,7 +72,7 @@ defmodule PsWeb.ProfileLive.FormComponent do
             {:noreply,
              socket
              |> put_flash(:info, "Profile updated successfully")
-             |> push_navigate(to: ~p"/@#{profile.username}")}
+             |> push_navigate(to: ~p"/#{profile.username}")}
 
           false ->
             {:noreply,

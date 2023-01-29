@@ -35,7 +35,7 @@
             <.link href={~p"/posts"} class={"text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:text-zinc-700"}>
               Home
             </.link>
-            <.link href={~p"/@#{@current_user.primary_profile.username}"} class={"text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:text-zinc-700"}>
+            <.link href={~p"/#{@current_user.primary_profile.username}"} class={"text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:text-zinc-700"}>
               <%= @current_user.primary_profile.username %>
             </.link>
             <.link href={~p"/users/log_out"} method="delete" class="rounded-lg bg-zinc-100 px-2 py-1 text-[0.8125rem] font-semibold leading-6 text-zinc-900 hover:bg-zinc-200/80 active:text-zinc-900/70">
