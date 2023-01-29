@@ -34,10 +34,8 @@ defmodule PsWeb.Router do
     # Show profiles
     live "/profiles", ProfileLive.Index, :index
     live "/profiles/new", ProfileLive.Index, :new
-    live "/@:username/edit", ProfileLive.Index, :edit
 
     live "/@:username", ProfileLive.Show, :show
-    live "/@:username/show/edit", ProfileLive.Show, :edit
 
     # Profile links (temporary)
     live "/links", LinkLive.Index, :index
@@ -99,6 +97,9 @@ defmodule PsWeb.Router do
     end
 
     resources "/posts", PostController, except: [:index, :new, :show]
+    
+    live "/@:username/edit", ProfileLive.Index, :edit
+    live "/@:username/show/edit", ProfileLive.Show, :edit
   end
 
   scope "/", PsWeb do

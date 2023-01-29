@@ -9,9 +9,9 @@ defmodule Ps.Policy.Checks do
   """
   def own_resource(user, post, _opts \\ nil)
   def own_resource(%User{id: id}, %Post{author_id: id}, _opts), do: true
+  def own_resource(%User{id: id}, %{user_id: id}, _opts), do: true
 
-  def own_resource(_, post, _) do
-    IO.puts("own_resource false")
+  def own_resource(_, _, _) do
     false
   end
 

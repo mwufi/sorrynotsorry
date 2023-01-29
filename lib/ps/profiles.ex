@@ -5,6 +5,7 @@ defmodule Ps.Profiles do
 
   import Ecto.Query, warn: false
   alias Ps.Repo
+  alias Ps.Policy
 
   alias Ps.Profiles.Profile
 
@@ -36,7 +37,9 @@ defmodule Ps.Profiles do
 
   """
   def get_profile!(id), do: Repo.get!(Profile, id)
-  def get_profile_by_username!(username), do: Repo.one(from p in Profile, where: p.username == ^username)
+
+  def get_profile_by_username!(username),
+    do: Repo.one(from(p in Profile, where: p.username == ^username))
 
   @doc """
   Creates a profile.
@@ -74,6 +77,12 @@ defmodule Ps.Profiles do
     |> Repo.update()
   end
 
+  def update_profile_for_user(%Profile{} = profile, current_user, attrs) do
+    with :ok <- Policy.authorize(:profile_update, current_user, profile) do
+      update_profile(profile, attrs)
+    end
+  end
+
   @doc """
   Deletes a profile.
 
@@ -88,6 +97,12 @@ defmodule Ps.Profiles do
   """
   def delete_profile(%Profile{} = profile) do
     Repo.delete(profile)
+  end
+
+  def delete_profile_for_user(%Profile{} = profile, current_user) do
+    with :ok <- Policy.authorize(:profile_delete, current_user, profile) do
+      delete_profile(profile)
+    end
   end
 
   @doc """

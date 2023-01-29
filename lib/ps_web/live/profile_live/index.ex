@@ -3,7 +3,7 @@ defmodule PsWeb.ProfileLive.Index do
 
   alias Ps.Profiles
   alias Ps.Profiles.Profile
-  on_mount {PsWeb.UserAuth, :mount_current_user}
+  on_mount({PsWeb.UserAuth, :mount_current_user})
 
   @impl true
   def mount(_params, _session, socket) do
@@ -36,9 +36,18 @@ defmodule PsWeb.ProfileLive.Index do
   @impl true
   def handle_event("delete", %{"username" => username}, socket) do
     profile = Profiles.get_profile_by_username!(username)
-    {:ok, _} = Profiles.delete_profile(profile)
 
-    {:noreply, assign(socket, :profiles, list_profiles())}
+    case Profiles.delete_profile_for_user(profile, socket.assigns.current_user) do
+      {:ok, _} ->
+        {:noreply, assign(socket, :profiles, list_profiles())}
+
+      {:error, :unauthorized} ->
+        IO.puts("You are not authorized to delete this profile")
+        {:noreply, assign(socket, :profiles, list_profiles())}
+
+      _ ->
+        {:noreply, assign(socket, :profiles, list_profiles())}
+    end
   end
 
   defp list_profiles do
