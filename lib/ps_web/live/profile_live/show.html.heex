@@ -1,3 +1,4 @@
+<%= if @profile != nil do %>
 <.header>
   @<%= @profile.username %>
   <:subtitle>This is where you can edit your profile</:subtitle>
@@ -38,3 +39,25 @@
     navigate={~p"/#{@profile.username}"}
   />
 </.modal>
+<% else %>
+
+<div class="container max-w-3xl mx-auto flex flex-col items-center my-20">
+  <div class="img p-2 m-4">
+    <img src="https://media.gamestop.com/i/gamestop/11162191/Jazwares-Pokemon-Valentines-Pikachu-with-Red-Flower-8-in-Plush" class="w-full object-cover rounded-full w-32 h-32">
+  </div>
+  <div>
+    <h1 class="text-5xl font-bold text-zinc-800">
+      <%= @username %>
+    </h1>
+    <div class="text-zinc-500">
+      This profile does not exist
+    </div>
+  </div>
+  <div class="whitespace-pre-wrap text-zinc-500">
+    Why don't you make it?
+  </div>
+</div>
+
+<.back navigate={~p"/profiles"}>Back to profiles</.back>
+
+<% end %>
