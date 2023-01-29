@@ -43,33 +43,98 @@ defmodule PsWeb.PageHTML do
       "https://media.gettyimages.com/id/1297349747/photo/hot-air-balloons-flying-over-the-botan-canyon-in-turkey.jpg?s=612x612&w=gi&k=20&c=Uo_yzYm9UJu6GpKilOLGrCbiSjyMB5DsvZTYpybYxj4="
     ]
 
+    text_posts = [
+      "Idea for a play: A custody battle of a corpse. A man - estranged from his birth family and deeply loved by found family - has unfortunately died. His parents that threw him out to the street, siblings who encouraged it, and extended family who never sided with him and simply allowed it to happen, now want to bury him in a family grave, under a name he didn't use anymore, with the ceremonies of a religion he never truly followed. The people who actually knew and loved him are trying everything in their power to stop this.
+
+      The deceased, himself, is there, watching this with popcorn. It's clear that no-one but the audience can see him. He can pause the action whenever he wants to monologue, and often stops the show to tell the audience the backstory of a claim, or what really happened when someone is blatantly lying. And one time, just to call his grandmother a bitch.
+
+      He is mainly indifferent to the show, simply entertained, no longer personally touched by anything that happens in the mortal world, but once, with tears in his eyes, takes a time to monologue about how deeply he loved his wife - whom he could not legally marry, but called wife nonetheless. Once, when his own cousin questions her presence here, as she was \"nothing to the deceased\", the protagonist throws the rest of his popcorn in the air, as - being incorporeal - he can't throw it at his cousin.
+
+     (most of it lands into the audience. better not be wearing anything expensive in there, and if the friend who brought you to see this play didn't warn you about this part, that's kind of a dick move from them.)
+
+      In the end it turns out there is some legal way, some previously forgotten document, new evidence, that allows the dead man to be buried by loved ones, and not his legal family. Despite of the fact that he has spent the whole play insisting that the events of the mortal world no longer concern him at all, and that he doesn't care what the outcome of this will be, his spirit dissipates from sheer relief.
+
+     It's deliberately left ambiguous where souls go when they're gone.
+     ",
+     "nothing has brought me more joy than seeing rian johnson say fuck you to the unflappable asshole bbc sherlock detective archetype and bringing back the righteous and unendingly kind columbo detective archetype "
+    ]
+
     posts =
       1..100
       |> Enum.map(fn _ ->
         %{
-          text: "so glad to be here!",
+          profile: %{
+            avatar:
+              "https://64.media.tumblr.com/366ca17098c950dc97847e6648eb5cad/3aa4f0cbad47e8d7-e7/s64x64u_c1/37bb852c2dda058e8cc29f2e6f29f22388f9764c.jpg",
+            username: "blessyouhawkeye"
+          },
+          comment: "so glad to be here!",
           image: Enum.random(images)
         }
       end)
 
     ~H"""
+    <%= for text_post <- text_posts do %>
+    <.post type="text_post" text={text_post} comment="wow" profile={posts |> Enum.at(0) |> Map.get(:profile)}/>
+    <% end %>
     <%= for post <- posts do %>
-      <.post image={post.image} text={post.text} />
+      <.post type="image_post" image={post.image} comment={post.comment} profile={post.profile}/>
     <% end %>
     """
   end
 
-  def post(assigns) do
+  def post(%{type: "text_post"} = assigns) do
     ~H"""
-    <div class="bg-white rounded overflow-hidden">
-      <div class="post-header bg-white h-12 p-3">
-        here's a post
+    <div class="relative">
+      <div class="bg-white rounded overflow-hidden">
+        <div class="post-header my-4 px-5 flex items-center">
+          <img src={@profile.avatar} class="w-8 h-8 rounded" />
+          <div class="font-bold text-gray-700 ml-3 text-sm"><%= @profile.username %></div>
+        </div>
+        <div class="text-gray-700 my-4 px-5 whitespace-pre-wrap"><%= @text |> String.trim %></div>
+        <div class="FOOTER p-4">
+          <.comment text={@comment} />
+          <a class="text-gray-400 text-sm mt-3 cursor-pointer hover:text-purple-400">View more...</a>
+          <div class="text-gray-400 text-sm mt-3">1 hour ago</div>
+          <div class="spacer mb-6"/>
+          <.action_bar />
+
+        </div>
       </div>
-      <img class="w-full" src={@image}/>
-      <div class="COMMENTS p-3">
-        <.comment text={@text} />
-        <a class="text-gray-400 text-sm mt-3 cursor-pointer hover:text-purple-400">View more...</a>
-        <div class="text-gray-400 text-sm mt-3">1 hour ago</div>
+    </div>
+    """
+  end
+
+  def post(%{type: "image_post"} = assigns) do
+    ~H"""
+    <div class="relative">
+      <div class="bg-white rounded overflow-hidden">
+        <div class="post-header my-4 px-5 flex items-center">
+          <img src={@profile.avatar} class="w-8 h-8 rounded" />
+          <div class="font-bold text-gray-700 ml-3 text-sm"><%= @profile.username %></div>
+        </div>
+        <img class="w-full" src={@image}/>
+        <div class="FOOTER p-4">
+          <.comment text={@comment} />
+          <a class="text-gray-400 text-sm mt-3 cursor-pointer hover:text-purple-400">View more...</a>
+          <div class="text-gray-400 text-sm mt-3">1 hour ago</div>
+          <div class="spacer mb-6"/>
+          <.action_bar />
+
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  def action_bar(assigns) do
+    ~H"""
+    <div class="flex">
+      <a class="left font-medium text-gray-500">12,523 notes</a>
+      <div class="ml-auto flex gap-2">
+        <Heroicons.ellipsis_horizontal class="w-6 h-6" />
+        <Heroicons.arrow_path_rounded_square class="w-6 h-6" />
+        <Heroicons.heart class="w-6 h-6" />
       </div>
     </div>
     """
