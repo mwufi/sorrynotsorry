@@ -65,7 +65,7 @@ defmodule PsWeb.PageHTML do
       <div class="post-header bg-white h-12 p-3">
         here's a post
       </div>
-      <img src={@image}/>
+      <img class="w-full" src={@image}/>
       <div class="COMMENTS p-3">
         <.comment text={@text} />
         <a class="text-gray-400 text-sm mt-3 cursor-pointer hover:text-purple-400">View more...</a>
