@@ -46,6 +46,17 @@ defmodule PsWeb.Router do
     live "/links/:id/show/edit", LinkLive.Show, :edit
   end
 
+  scope "/", PsWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/posts", PostController, except: [:index, :new, :show]
+
+    live "/:username/edit", ProfileLive.Index, :edit
+    live "/:username/show/edit", ProfileLive.Show, :edit
+
+    get "/:username/github", PageController, :github
+  end
+
   # Other scopes may use custom stacks.
   scope "/api", PsWeb do
     pipe_through :api
@@ -95,11 +106,6 @@ defmodule PsWeb.Router do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
     end
-
-    resources "/posts", PostController, except: [:index, :new, :show]
-
-    live "/:username/edit", ProfileLive.Index, :edit
-    live "/:username/show/edit", ProfileLive.Show, :edit
   end
 
   scope "/", PsWeb do

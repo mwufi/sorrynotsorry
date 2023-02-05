@@ -24,6 +24,10 @@ defmodule PsWeb.PageController do
     render(conn, :editor)
   end
 
+  def github(conn, _params) do
+    render(conn, :github)
+  end
+
   def profile(conn, _params) do
     profile = %{
       name: "John Doe",
