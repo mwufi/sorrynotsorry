@@ -70,14 +70,52 @@ const CustomLink = Link.extend({
 const uploadImage = async image => {
   console.log("uploading", image)
 
-  // for now, just return the base64 encoded image
-  const fileReader = new FileReader()
-  const myPromise = new Promise((resolve, reject) => {
-    fileReader.readAsDataURL(image)
-    fileReader.onloadend = () => {
-      resolve(fileReader.result)
-    }
+  // get the upload URL
+  const response = await fetch("/api/uploads/new", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
   })
+
+  const myPromise = new Promise((resolve, reject) => {
+    response.json().then(data => {
+      console.log("getting an image upload URL..", data)
+
+      if (data.success) {
+        const UPLOAD_ENDPOINT = data.uploadURL
+
+        // make a POST request to the upload URL
+        const request = new XMLHttpRequest()
+        const formData = new FormData()
+        request.open("POST", UPLOAD_ENDPOINT, true)
+        request.onreadystatechange = () => {
+          if (request.readyState === 4 && request.status === 200) {
+            var jsonResponse = JSON.parse(request.responseText)
+            if (jsonResponse.success) {
+              const publicUrl = jsonResponse.result.variants[0]
+              console.log("Success! Your image is:", publicUrl)
+              resolve(publicUrl)
+            } else {
+              console.error("error posting image to Cloudflare", jsonResponse)
+            }
+          }
+        }
+        formData.append("file", image)
+        request.send(formData)
+      }
+    })
+  })
+
+  // // for now, just return the base64 encoded image
+  // const fileReader = new FileReader()
+  // const myPromise = new Promise((resolve, reject) => {
+  //   fileReader.readAsDataURL(image)
+  //   fileReader.onloadend = () => {
+  //     resolve(fileReader.result)
+  //   }
+  // })
   return myPromise
 }
 

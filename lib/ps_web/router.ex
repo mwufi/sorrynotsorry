@@ -63,6 +63,7 @@ defmodule PsWeb.Router do
 
     post "/posts", PostApiController, :create
     patch "/posts/:id", PostApiController, :update
+    get "/uploads/new", UploadApiController, :new
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

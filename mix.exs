@@ -42,6 +42,7 @@ defmodule Ps.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_markdown, "~> 1.0"},
       {:phoenix_live_view, "~> 0.18.3"},
+      {:httpoison, "~> 2.0.0"},
       {:heroicons, "~> 0.5"},
       {:floki, ">= 0.30.0", only: :test},
       {:let_me, "~> 1.0.2"},
