@@ -77,7 +77,7 @@ defmodule PsWeb.PageHTML do
         %{
           profile: %{
             avatar_url:
-              "https://64.media.tumblr.com/366ca17098c950dc97847e6648eb5cad/3aa4f0cbad47e8d7-e7/s64x64u_c1/37bb852c2dda058e8cc29f2e6f29f22388f9764c.jpg",
+              "https://64.media.tumblr.com/268ef56ac46fd4178cf4ab15f55c9814/14c3f1d0654f1117-31/s128x128u_c1/04513a4a793281f8c1bc51b8d080d1344a7d4b3c.pnj",
             username: "blessyouhawkeye"
           },
           comment: "so glad to be here!",
@@ -102,11 +102,46 @@ defmodule PsWeb.PageHTML do
     """
   end
 
+  def big_header(assigns) do
+    ~H"""
+    <div class="top-0 left-0 right-0 bg-yellow-50 z-10">
+      <div class="flex items-center gap-4 p-4">
+        <img
+          src={@profile.avatar_url}
+          class="h-10 w-10 rounded-full"
+        />
+        <div class="flex-1">
+          <div class="text-gray-700 font-bold"><%= @profile.username %></div>
+          <div class="text-gray-400 text-sm">1 hour ago</div>
+        </div>
+        <div class="text-gray-400 text-sm">...</div>
+      </div>
+    </div>
+    """
+  end
+
+  slot(:profile, required: true)
+
+  def sticky_header(assigns) do
+    ~H"""
+    <div class="absolute top-0 left-0 h-full z-20">
+      <div class="sticky top-[4em]">
+        <div class="flex items-center h-16 w-16">
+          <img
+            src={@profile.avatar_url}
+            class="h-full w-full rounded"
+          />
+        </div>
+      </div>
+    </div>
+    """
+  end
+
   def post(%{type: "text_post"} = assigns) do
     ~H"""
-    <div class="relative">
-      <div class="bg-white rounded overflow-hidden">
-        <.small_header profile={@profile} />
+    <div class="relative flex justify-end">
+      <div class="bg-white rounded overflow-hidden max-w-[540px]">
+        <.sticky_header profile={@profile} />
         <div class="text-gray-700 my-4 px-5 whitespace-pre-wrap"><%= @text |> String.trim() %></div>
         <div class="FOOTER p-4">
           <.comment text={@comment} />

@@ -13,7 +13,7 @@ defmodule PsWeb.PageController do
 
     # The home page is often custom made,
     # so skip the default app layout.
-    render(conn, :inbox,
+    render(conn, :tumblr,
       layout: false,
       public_posts: Ps.Posts.list_public_posts(),
       message: message
