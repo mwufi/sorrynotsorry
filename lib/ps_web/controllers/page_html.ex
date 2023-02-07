@@ -141,7 +141,12 @@ defmodule PsWeb.PageHTML do
     ~H"""
     <div class="relative flex justify-end">
       <div class="bg-white rounded overflow-hidden max-w-[540px]">
-        <.sticky_header profile={@profile} />
+        <div class="md:hidden">
+          <.big_header profile={@profile} />
+        </div>
+        <div class="hidden md:block">
+          <.sticky_header profile={@profile} />
+        </div>
         <div class="text-gray-700 my-4 px-5 whitespace-pre-wrap"><%= @text |> String.trim() %></div>
         <div class="FOOTER p-4">
           <.comment text={@comment} />
