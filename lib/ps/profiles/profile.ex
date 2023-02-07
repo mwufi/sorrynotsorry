@@ -12,6 +12,8 @@ defmodule Ps.Profiles.Profile do
     field(:username, :string)
     belongs_to(:user, Ps.Accounts.User)
 
+    has_many(:tweets, Ps.Tweets.Tweet)
+
     timestamps()
   end
 

@@ -31,12 +31,6 @@ defmodule PsWeb.Router do
     get "/posts/new", PageController, :editor
     resources "/posts", PostController, only: [:index, :show]
 
-    # Show profiles
-    live "/profiles", ProfileLive.Index, :index
-    live "/profiles/new", ProfileLive.Index, :new
-
-    live "/:username", ProfileLive.Show, :show
-
     # Profile links (temporary)
     live "/links", LinkLive.Index, :index
     live "/links/new", LinkLive.Index, :new
@@ -44,10 +38,24 @@ defmodule PsWeb.Router do
 
     live "/links/:id", LinkLive.Show, :show
     live "/links/:id/show/edit", LinkLive.Show, :edit
+
+    # Tweets (temporary)
+    live "/tweets", TweetLive.Index, :index
+    live "/tweets/:id", TweetLive.Show, :show
+
+    # Show profiles
+    live "/profiles", ProfileLive.Index, :index
+    live "/profiles/new", ProfileLive.Index, :new
+    live "/:username", ProfileLive.Show, :show
   end
 
   scope "/", PsWeb do
     pipe_through [:browser, :require_authenticated_user]
+
+    # Tweets
+    live "/tweets/new", TweetLive.Index, :new
+    live "/tweets/:id/edit", TweetLive.Index, :edit
+    live "/tweets/:id/show/edit", TweetLive.Show, :edit
 
     resources "/posts", PostController, except: [:index, :new, :show]
 
