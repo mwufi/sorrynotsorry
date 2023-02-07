@@ -3,8 +3,18 @@ defmodule PsWeb.PostControllerTest do
 
   import Ps.PostsFixtures
 
-  @create_attrs %{content: "some content", is_draft: true, subtitle: "some subtitle", title: "some title"}
-  @update_attrs %{content: "some updated content", is_draft: false, subtitle: "some updated subtitle", title: "some updated title"}
+  @create_attrs %{
+    content: "some content",
+    is_draft: true,
+    subtitle: "some subtitle",
+    title: "some title"
+  }
+  @update_attrs %{
+    content: "some updated content",
+    is_draft: false,
+    subtitle: "some updated subtitle",
+    title: "some updated title"
+  }
   @invalid_attrs %{content: nil, is_draft: nil, subtitle: nil, title: nil}
 
   describe "index" do

@@ -70,7 +70,7 @@ defmodule Ps.Posts do
   end
 
   def get_author_profile(%Post{} = post) do
-    post |> Ecto.assoc([:author, :primary_profile]) |> Repo.one
+    post |> Ecto.assoc([:author, :primary_profile]) |> Repo.one()
   end
 
   @doc """

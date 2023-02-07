@@ -391,16 +391,16 @@ defmodule PsWeb.CoreComponents do
     case assigns.color do
       "green" ->
         ~H"""
-        <span class={"bg-green-100 text-green-700 text-xs font-medium
-        mr-2 px-2.5 py-0.5 rounded border border-green-300"}>
+        <span class="bg-green-100 text-green-700 text-xs font-medium
+        mr-2 px-2.5 py-0.5 rounded border border-green-300">
           <%= render_slot(@inner_block) %>
         </span>
         """
 
       _ ->
         ~H"""
-        <span class={"bg-yellow-100 text-yellow-700 text-xs font-medium
-        mr-2 px-2.5 py-0.5 rounded border border-yellow-300"}>
+        <span class="bg-yellow-100 text-yellow-700 text-xs font-medium
+        mr-2 px-2.5 py-0.5 rounded border border-yellow-300">
           <%= render_slot(@inner_block) %>
         </span>
         """

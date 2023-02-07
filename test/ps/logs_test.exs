@@ -8,7 +8,14 @@ defmodule Ps.LogsTest do
 
     import Ps.LogsFixtures
 
-    @invalid_attrs %{cookie: nil, first_visit: nil, last_visit: nil, name: nil, status: nil, visit_count: nil}
+    @invalid_attrs %{
+      cookie: nil,
+      first_visit: nil,
+      last_visit: nil,
+      name: nil,
+      status: nil,
+      visit_count: nil
+    }
 
     test "list_visitors/0 returns all visitors" do
       visitor = visitor_fixture()
@@ -21,7 +28,14 @@ defmodule Ps.LogsTest do
     end
 
     test "create_visitor/1 with valid data creates a visitor" do
-      valid_attrs = %{cookie: "some cookie", first_visit: ~U[2023-01-21 01:51:00Z], last_visit: ~U[2023-01-21 01:51:00Z], name: "some name", status: "some status", visit_count: 42}
+      valid_attrs = %{
+        cookie: "some cookie",
+        first_visit: ~U[2023-01-21 01:51:00Z],
+        last_visit: ~U[2023-01-21 01:51:00Z],
+        name: "some name",
+        status: "some status",
+        visit_count: 42
+      }
 
       assert {:ok, %Visitor{} = visitor} = Logs.create_visitor(valid_attrs)
       assert visitor.cookie == "some cookie"
@@ -38,7 +52,15 @@ defmodule Ps.LogsTest do
 
     test "update_visitor/2 with valid data updates the visitor" do
       visitor = visitor_fixture()
-      update_attrs = %{cookie: "some updated cookie", first_visit: ~U[2023-01-22 01:51:00Z], last_visit: ~U[2023-01-22 01:51:00Z], name: "some updated name", status: "some updated status", visit_count: 43}
+
+      update_attrs = %{
+        cookie: "some updated cookie",
+        first_visit: ~U[2023-01-22 01:51:00Z],
+        last_visit: ~U[2023-01-22 01:51:00Z],
+        name: "some updated name",
+        status: "some updated status",
+        visit_count: 43
+      }
 
       assert {:ok, %Visitor{} = visitor} = Logs.update_visitor(visitor, update_attrs)
       assert visitor.cookie == "some updated cookie"

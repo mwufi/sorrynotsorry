@@ -24,6 +24,29 @@ defmodule Ps.Policy do
     end
   end
 
+  object :tweet do
+    # Creating tweets is always allowed
+    action :create do
+      allow(true)
+    end
+
+    # Viewing tweets is always allowed
+    # TODO: add drafts?
+    action :read do
+      allow(true)
+    end
+
+    # Updating an tweet is allowed if (the user wrote the tweet)
+    action :update do
+      allow([:own_resource])
+    end
+
+    # Deleting an tweet is allowed if (the user wrote the tweet)
+    action :delete do
+      allow([:own_resource])
+    end
+  end
+
   object :profile do
     # Viewing profiles is always allowed
     action :read do

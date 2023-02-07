@@ -21,7 +21,12 @@ defmodule Ps.ProfilesTest do
     end
 
     test "create_profile/1 with valid data creates a profile" do
-      valid_attrs = %{avatar_url: "some avatar_url", bio: "some bio", name: "some name", username: "some username"}
+      valid_attrs = %{
+        avatar_url: "some avatar_url",
+        bio: "some bio",
+        name: "some name",
+        username: "some username"
+      }
 
       assert {:ok, %Profile{} = profile} = Profiles.create_profile(valid_attrs)
       assert profile.avatar_url == "some avatar_url"
@@ -36,7 +41,13 @@ defmodule Ps.ProfilesTest do
 
     test "update_profile/2 with valid data updates the profile" do
       profile = profile_fixture()
-      update_attrs = %{avatar_url: "some updated avatar_url", bio: "some updated bio", name: "some updated name", username: "some updated username"}
+
+      update_attrs = %{
+        avatar_url: "some updated avatar_url",
+        bio: "some updated bio",
+        name: "some updated name",
+        username: "some updated username"
+      }
 
       assert {:ok, %Profile{} = profile} = Profiles.update_profile(profile, update_attrs)
       assert profile.avatar_url == "some updated avatar_url"

@@ -49,21 +49,21 @@
       Welcome to Bird!
     </p>
     <p class="mt-4 text-base leading-7 text-zinc-600">
-    <%= @message %>
+      <%= @message %>
     </p>
 
     <div class="mt-6"></div>
     <%= if @current_user do %>
-     <.link href={~p"/posts"}>
-      <.button class="bg-purple-400">See Your Posts</.button>
-    </.link>
-     <.link href={~p"/editor"}>
-      <.button class="bg-purple-400">Editor</.button>
-    </.link>
+      <.link href={~p"/posts"}>
+        <.button class="bg-purple-400">See Your Posts</.button>
+      </.link>
+      <.link href={~p"/editor"}>
+        <.button class="bg-purple-400">Editor</.button>
+      </.link>
     <% else %>
-    <.link href={~p"/users/register"}>
-      <.button class="bg-purple-400">Sign up!</.button>
-    </.link>
+      <.link href={~p"/users/register"}>
+        <.button class="bg-purple-400">Sign up!</.button>
+      </.link>
     <% end %>
 
     <.table id="posts" rows={@public_posts} row_click={&JS.navigate(~p"/posts/#{&1}")}>
@@ -117,11 +117,10 @@
             </span>
           </a>
 
-        <p class="mt-4 text-[2rem] font-semibold leading-10 tracking-tighter text-zinc-900">
-          Hey, what's up?
-        </p>
+          <p class="mt-4 text-[2rem] font-semibold leading-10 tracking-tighter text-zinc-900">
+            Hey, what's up?
+          </p>
         </div>
-
       </div>
     </div>
   </div>

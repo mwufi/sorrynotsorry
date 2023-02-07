@@ -7,29 +7,34 @@
 <.small_header profile={@author_profile} padding="mb-8" />
 
 <%= if @post.permalink do %>
-Permalink: <.link href={~p"/p/#{@post.permalink}"} class="underline text-purple-500 px-1">
-/p/<%= @post.permalink %>
-</.link>
+  Permalink:
+  <.link href={~p"/p/#{@post.permalink}"} class="underline text-purple-500 px-1">
+    /p/<%= @post.permalink %>
+  </.link>
 <% end %>
-
 
 <%= if @post.title != "test" do %>
-<.header class="my-8">
-  <%= @post.title %>
-  <:subtitle><%= @post.subtitle %></:subtitle>
-</.header>
+  <.header class="my-8">
+    <%= @post.title %>
+    <:subtitle><%= @post.subtitle %></:subtitle>
+  </.header>
 <% end %>
-
 
 <div class="element markdown-body"></div>
 
-<div class="hidden post-content"><%= raw @post.content %></div>
+<div class="hidden post-content"><%= raw(@post.content) %></div>
 
 <%= if @can_edit do %>
-<button class="px-4 py-2 border mb-4" id="save-button" onclick={"updatePost(" <> Integer.to_string(@post.id) <> ")"}>Save</button>
-<button class="px-4 py-2 border mb-4" id="add-image-button" onclick="addImage()">
-add an image
-</button>
+  <button
+    class="px-4 py-2 border mb-4"
+    id="save-button"
+    onclick={"updatePost(" <> Integer.to_string(@post.id) <> ")"}
+  >
+    Save
+  </button>
+  <button class="px-4 py-2 border mb-4" id="add-image-button" onclick="addImage()">
+    add an image
+  </button>
 <% end %>
 
 <.back navigate={~p"/posts"}>Back to posts</.back>

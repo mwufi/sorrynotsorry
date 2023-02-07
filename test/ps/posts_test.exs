@@ -21,7 +21,12 @@ defmodule Ps.PostsTest do
     end
 
     test "create_post/1 with valid data creates a post" do
-      valid_attrs = %{content: "some content", is_draft: true, subtitle: "some subtitle", title: "some title"}
+      valid_attrs = %{
+        content: "some content",
+        is_draft: true,
+        subtitle: "some subtitle",
+        title: "some title"
+      }
 
       assert {:ok, %Post{} = post} = Posts.create_post(valid_attrs)
       assert post.content == "some content"
@@ -36,7 +41,13 @@ defmodule Ps.PostsTest do
 
     test "update_post/2 with valid data updates the post" do
       post = post_fixture()
-      update_attrs = %{content: "some updated content", is_draft: false, subtitle: "some updated subtitle", title: "some updated title"}
+
+      update_attrs = %{
+        content: "some updated content",
+        is_draft: false,
+        subtitle: "some updated subtitle",
+        title: "some updated title"
+      }
 
       assert {:ok, %Post{} = post} = Posts.update_post(post, update_attrs)
       assert post.content == "some updated content"

@@ -1,6 +1,6 @@
 <.header>
   <%= if @current_user do %>
-  Your Posts
+    Your Posts
   <% end %>
   <:actions>
     <.link href={~p"/posts/new"}>
@@ -10,25 +10,25 @@
 </.header>
 
 <%= if @current_user do %>
-<.table id="posts" rows={@posts} row_click={&JS.navigate(~p"/posts/#{&1}")}>
-  <:col :let={post} label="Title"><%= post.title %></:col>
-  <:col :let={post} label="Subtitle"><%= post.subtitle %></:col>
-  <:col :let={post} label="">
-    <%= if post.is_draft do %>
-      <.badge color="yellow">Draft</.badge>
-    <% else %>
-      <.badge color="green">Published</.badge>
-    <% end %>
-  </:col>
-  <:action :let={post}>
-    <div class="sr-only">
-      <.link navigate={~p"/posts/#{post}"}>Show</.link>
-    </div>
-    <.link href={~p"/posts/#{post}"} method="delete" data-confirm="Are you sure?">
-      Delete
-    </.link>
-  </:action>
-</.table>
+  <.table id="posts" rows={@posts} row_click={&JS.navigate(~p"/posts/#{&1}")}>
+    <:col :let={post} label="Title"><%= post.title %></:col>
+    <:col :let={post} label="Subtitle"><%= post.subtitle %></:col>
+    <:col :let={post} label="">
+      <%= if post.is_draft do %>
+        <.badge color="yellow">Draft</.badge>
+      <% else %>
+        <.badge color="green">Published</.badge>
+      <% end %>
+    </:col>
+    <:action :let={post}>
+      <div class="sr-only">
+        <.link navigate={~p"/posts/#{post}"}>Show</.link>
+      </div>
+      <.link href={~p"/posts/#{post}"} method="delete" data-confirm="Are you sure?">
+        Delete
+      </.link>
+    </:action>
+  </.table>
 <% end %>
 
 <div class="mt-20"></div>

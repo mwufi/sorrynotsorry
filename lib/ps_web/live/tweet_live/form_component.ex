@@ -9,7 +9,7 @@ defmodule PsWeb.TweetLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage tweet records in your database.</:subtitle>
+        <:subtitle>Hello, <%= @current_profile.username %></:subtitle>
       </.header>
 
       <.simple_form
@@ -55,7 +55,11 @@ defmodule PsWeb.TweetLive.FormComponent do
   end
 
   defp save_tweet(socket, :edit, tweet_params) do
-    case Tweets.update_tweet(socket.assigns.tweet, tweet_params) do
+    case Tweets.update_tweet_for_profile(
+           socket.assigns.current_profile,
+           socket.assigns.tweet,
+           tweet_params
+         ) do
       {:ok, _tweet} ->
         {:noreply,
          socket
@@ -68,7 +72,10 @@ defmodule PsWeb.TweetLive.FormComponent do
   end
 
   defp save_tweet(socket, :new, tweet_params) do
-    case Tweets.create_tweet(tweet_params) do
+    case Tweets.create_tweet_for_profile(
+           socket.assigns.current_profile,
+           tweet_params
+         ) do
       {:ok, _tweet} ->
         {:noreply,
          socket

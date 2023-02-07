@@ -39,9 +39,7 @@ defmodule PsWeb.UserResetPasswordLiveTest do
       result =
         lv
         |> element("#reset_password_form")
-        |> render_change(
-          user: %{"password" => "a", "confirmation_password" => "b"}
-        )
+        |> render_change(user: %{"password" => "a", "confirmation_password" => "b"})
 
       assert result =~ "should be at least 5 character"
       assert result =~ "does not match password"

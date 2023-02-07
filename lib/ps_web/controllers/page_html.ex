@@ -6,7 +6,10 @@ defmodule PsWeb.PageHTML do
   def nav_menu(assigns) do
     ~H"""
     <div class="LEFT-MENU flex-0 w-64 p-2 sticky top-0 max-h-screen">
-      <a href="/" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
+      <a
+        href="/"
+        class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer"
+      >
         <Heroicons.home class="h-6 w-6 stroke-current" />
         <div class="text-lg font-bold">Home</div>
       </a>
@@ -18,15 +21,24 @@ defmodule PsWeb.PageHTML do
         <Heroicons.magnifying_glass class="h-6 w-6 stroke-current" />
         <div class="text-lg">Search</div>
       </a>
-      <a href="/profiles" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
+      <a
+        href="/profiles"
+        class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer"
+      >
         <Heroicons.globe_asia_australia class="h-6 w-6 stroke-current" />
         <div class="text-lg">Everyone</div>
       </a>
-      <a href="/posts" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
+      <a
+        href="/posts"
+        class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer"
+      >
         <Heroicons.heart class="h-6 w-6 stroke-current" />
         <div class="text-lg">Your Posts</div>
       </a>
-      <a href="/editor" class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer">
+      <a
+        href="/editor"
+        class="px-4 p-3 flex items-center gap-4 rounded-full hover:bg-gray-700 hover:text-gray-50 hover:cursor-pointer"
+      >
         <Heroicons.paper_airplane class="h-6 w-6 stroke-current" />
         <div class="text-lg">Create</div>
       </a>
@@ -94,7 +106,7 @@ defmodule PsWeb.PageHTML do
     ~H"""
     <div class="relative">
       <div class="bg-white rounded overflow-hidden">
-        <.small_header profile={@profile}/>
+        <.small_header profile={@profile} />
         <div class="text-gray-700 my-4 px-5 whitespace-pre-wrap"><%= @text |> String.trim() %></div>
         <div class="FOOTER p-4">
           <.comment text={@comment} />
@@ -112,7 +124,7 @@ defmodule PsWeb.PageHTML do
     ~H"""
     <div class="relative">
       <div class="bg-white rounded overflow-hidden">
-        <.small_header profile={@profile}/>
+        <.small_header profile={@profile} />
         <img class="w-full" src={@image} />
         <div class="FOOTER p-4">
           <.comment text={@comment} />

@@ -23,18 +23,21 @@
   </:action>
 </.table>
 
-<.modal
-  :if={@live_action in [:new, :edit]}
-  id="tweet-modal"
-  show
-  on_cancel={JS.navigate(~p"/tweets")}
->
-  <.live_component
-    module={PsWeb.TweetLive.FormComponent}
-    id={@tweet.id || :new}
-    title={@page_title}
-    action={@live_action}
-    tweet={@tweet}
-    navigate={~p"/tweets"}
-  />
-</.modal>
+<%= if assigns[:current_user] do %>
+  <.modal
+    :if={@live_action in [:new, :edit]}
+    id="tweet-modal"
+    show
+    on_cancel={JS.navigate(~p"/tweets")}
+  >
+    <.live_component
+      module={PsWeb.TweetLive.FormComponent}
+      id={@tweet.id || :new}
+      title={@page_title}
+      action={@live_action}
+      tweet={@tweet}
+      current_profile={@current_user.primary_profile}
+      navigate={~p"/tweets"}
+    />
+  </.modal>
+<% end %>

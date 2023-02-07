@@ -57,6 +57,26 @@ defmodule Ps.Tweets do
   end
 
   @doc """
+  Creates a tweet for a user.
+
+  ## Examples
+
+      iex> create_tweet_for_user(current_user, %{field: value})
+      {:ok, %Tweet{}}
+
+      iex> create_tweet_for_user(current_user, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_tweet_for_profile(current_profile, attrs \\ %{}) do
+    with :ok <- Policy.authorize(:tweet_create, current_profile) do
+      Ecto.build_assoc(current_profile, :tweets)
+      |> Tweet.changeset(attrs)
+      |> Repo.insert()
+    end
+  end
+
+  @doc """
   Updates a tweet.
 
   ## Examples
@@ -72,6 +92,12 @@ defmodule Ps.Tweets do
     tweet
     |> Tweet.changeset(attrs)
     |> Repo.update()
+  end
+
+  def update_tweet_for_profile(current_profile, %Tweet{} = tweet, attrs \\ %{}) do
+    with :ok <- Policy.authorize(:tweet_update, current_profile) do
+      update_tweet(tweet, attrs)
+    end
   end
 
   @doc """

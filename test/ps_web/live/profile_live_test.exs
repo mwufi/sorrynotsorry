@@ -4,8 +4,18 @@ defmodule PsWeb.ProfileLiveTest do
   import Phoenix.LiveViewTest
   import Ps.ProfilesFixtures
 
-  @create_attrs %{avatar_url: "some avatar_url", bio: "some bio", name: "some name", username: "some username"}
-  @update_attrs %{avatar_url: "some updated avatar_url", bio: "some updated bio", name: "some updated name", username: "some updated username"}
+  @create_attrs %{
+    avatar_url: "some avatar_url",
+    bio: "some bio",
+    name: "some name",
+    username: "some username"
+  }
+  @update_attrs %{
+    avatar_url: "some updated avatar_url",
+    bio: "some updated bio",
+    name: "some updated name",
+    username: "some updated username"
+  }
   @invalid_attrs %{avatar_url: nil, bio: nil, name: nil, username: nil}
 
   defp create_profile(_) do

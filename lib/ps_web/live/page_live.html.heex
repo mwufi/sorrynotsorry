@@ -1,14 +1,17 @@
 <%= if assigns[:user_style] do %>
-<style><%= raw(@user_style) %></style>
+  <style>
+    <%= raw(@user_style) %>
+  </style>
 <% end %>
 
 <div class="markdown-body">
+  <%= raw(Earmark.as_html!(@markdown_blurb)) %>
 
-<%= raw(Earmark.as_html!(@markdown_blurb)) %>
+  <div class="title">What's up homies</div>
+  <img
+    src="https://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg"
+    alt="a picture of a puppy"
+  />
 
-<div class="title">What's up homies</div>
-<img src="https://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg" alt="a picture of a puppy" />
-
-<p>here's a link to <a href="https://www.google.com">google</a></p>
-
+  <p>here's a link to <a href="https://www.google.com">google</a></p>
 </div>
