@@ -1,7 +1,18 @@
 <div class="my-10">
+<%= if assigns[:current_user] do %>
 <.link patch={~p"/tweets/new"}>
   <.button>New Tweet</.button>
 </.link>
+<% else %>
+<p class="mb-5 text-xl">Sign up or log in to Tweet!</p>
+<.link patch={~p"/users/register"}>
+  <.button>Sign up</.button>
+</.link>
+<.link patch={~p"/users/log_in"}>
+  <.button>Log In</.button>
+</.link>
+<div class="pb-5"></div>
+<% end %>
 </div>
 
 <div class="max-w-[625px] flex flex-col gap-8 mb-20">
