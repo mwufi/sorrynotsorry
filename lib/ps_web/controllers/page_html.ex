@@ -88,10 +88,10 @@ defmodule PsWeb.PageHTML do
     assigns = Map.merge(assigns, %{posts: posts, text_posts: text_posts})
 
     ~H"""
-    <%= for text_post <- @text_posts do %>
+    <%= for text_post <- @public_posts do %>
       <.post
         type="text_post"
-        text={text_post}
+        text={text_post.content}
         comment="wow"
         profile={@posts |> Enum.at(0) |> Map.get(:profile)}
       />

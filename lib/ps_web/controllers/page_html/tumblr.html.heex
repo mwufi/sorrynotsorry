@@ -1,11 +1,26 @@
 <div class="BASE-LAYOUT flex isolate">
   <div class="p-2 flex-grow /// ">
     <div class="MIDDLE mx-auto w-fit flex">
-      <div class="grow max-w-[625px] flex flex-col gap-8">
-        <.posts />
+      <div class="grow w-[625px] flex flex-col gap-8">
+        <div class="flex justify-end -my-4">
+          <div class="flex flex-col gap-4 w-full max-w-[530px]">
+            <p class="text-gray-500">Greetings, visitor! Enjoy your stay</p>
+          </div>
+        </div>
+        <%= for text_post <- @tweets do %>
+          <.post
+            type="text_post"
+            text={text_post.content}
+            comment={text_post.hashtags}
+            profile={text_post.profile}
+          />
+        <% end %>
       </div>
-      <div class="hidden lg:block lg:w-[320px] ml-6 p-8 text-white">
-        i am an aside!
+      <div class="hidden lg:block lg:w-[320px] ml-8">
+        <div class="text-xl font-bold text-gray-700 border-b p-2 mb-2">Check out these blogs</div>
+        <%= for profile <- @profile_recommendations do %>
+        <.profile_card profile={profile} />
+        <% end %>
       </div>
     </div>
   </div>

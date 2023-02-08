@@ -63,7 +63,7 @@ defmodule PsWeb.ProfileComponents do
   def sticky_header(assigns) do
     ~H"""
     <div class="absolute top-0 left-0 h-full z-20">
-      <div class="sticky top-[4em]">
+      <div class="sticky top-[2em]">
         <div class="flex items-center h-16 w-16">
           <img
             src={@profile.avatar_url}
@@ -145,6 +145,29 @@ defmodule PsWeb.ProfileComponents do
         <span class="COMMENT-USER-NAME">John Doe</span>
       </span>
       <span class="COMMENT-TEXT"><%= @text %></span>
+    </div>
+    """
+  end
+
+  @doc """
+  On the sidebar, this is a profile you can follow
+  """
+  def profile_card(assigns) do
+    ~H"""
+    <div class="flex items-center gap-3 p-2 rounded hover:bg-gray-300">
+      <.link navigate={~p"/#{@profile.username}"}>
+      <img
+        src={@profile.avatar_url}
+        class="h-10 w-10 rounded"
+      />
+      </.link>
+      <div class="flex-1">
+        <.link navigate={~p"/#{@profile.username}"}>
+        <div class="text-gray-700 font-bold"><%= @profile.username %></div>
+        </.link>
+        <div class="text-gray-400 text-sm">1 hour ago</div>
+      </div>
+      <div class="text-gray-400 text-sm">...</div>
     </div>
     """
   end
