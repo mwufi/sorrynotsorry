@@ -2,6 +2,7 @@ defmodule PsWeb.TweetLive.Show do
   use PsWeb, :live_view
 
   alias Ps.Tweets
+  on_mount({PsWeb.UserAuth, :mount_current_user})
 
   @impl true
   def mount(_params, _session, socket) do

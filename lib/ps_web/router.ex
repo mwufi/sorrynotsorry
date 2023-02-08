@@ -48,13 +48,9 @@ defmodule PsWeb.Router do
     pipe_through([:browser, :require_authenticated_user])
 
     # Tweets
-
-    live_session :df,
-      on_mount: [{PsWeb.UserAuth, :mount_current_user}] do
-      live("/tweets/new", TweetLive.Index, :new)
-      live("/tweets/:id/edit", TweetLive.Index, :edit)
-      live("/tweets/:id/show/edit", TweetLive.Show, :edit)
-    end
+    live("/tweets/new", TweetLive.Index, :new)
+    live("/tweets/:id/edit", TweetLive.Index, :edit)
+    live("/tweets/:id/show/edit", TweetLive.Show, :edit)
 
     resources("/posts", PostController, except: [:index, :new, :show])
 

@@ -3,6 +3,7 @@ defmodule PsWeb.TweetLive.Index do
 
   alias Ps.Tweets
   alias Ps.Tweets.Tweet
+  on_mount({PsWeb.UserAuth, :mount_current_user})
 
   @impl true
   def mount(_params, _session, socket) do
