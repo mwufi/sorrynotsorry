@@ -19,7 +19,10 @@ defmodule Ps.Tweets do
 
   """
   def list_tweets do
-    Repo.all(Tweet)
+    # order tweets by last updated
+    from(c in Tweet, order_by: [desc: c.updated_at])
+    |> Repo.all()
+    |> Repo.preload(:profile)
   end
 
   @doc """

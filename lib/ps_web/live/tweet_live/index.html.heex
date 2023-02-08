@@ -1,27 +1,19 @@
-<.header>
-  Listing Tweets
-  <:actions>
-    <.link patch={~p"/tweets/new"}>
-      <.button>New Tweet</.button>
-    </.link>
-  </:actions>
-</.header>
+<div class="my-10">
+<.link patch={~p"/tweets/new"}>
+  <.button>New Tweet</.button>
+</.link>
+</div>
 
-<.table id="tweets" rows={@tweets} row_click={&JS.navigate(~p"/tweets/#{&1}")}>
-  <:col :let={tweet} label="Content"><%= tweet.content %></:col>
-  <:col :let={tweet} label="Hashtags"><%= tweet.hashtags %></:col>
-  <:action :let={tweet}>
-    <div class="sr-only">
-      <.link navigate={~p"/tweets/#{tweet}"}>Show</.link>
-    </div>
-    <.link patch={~p"/tweets/#{tweet}/edit"}>Edit</.link>
-  </:action>
-  <:action :let={tweet}>
-    <.link phx-click={JS.push("delete", value: %{id: tweet.id})} data-confirm="Are you sure?">
-      Delete
-    </.link>
-  </:action>
-</.table>
+<div class="max-w-[625px] flex flex-col gap-8 mb-20">
+  <%= for text_post <- @tweets do %>
+    <.post
+      type="text_post"
+      text={text_post.content}
+      comment={text_post.hashtags}
+      profile={text_post.profile}
+    />
+  <% end %>
+</div>
 
 <%= if assigns[:current_user] do %>
   <.modal

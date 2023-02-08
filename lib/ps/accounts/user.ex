@@ -3,7 +3,7 @@ defmodule Ps.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field(:email, :string, default: "untested@radar")
+    field(:email, :string)
     field(:password, :string, virtual: true, redact: true)
     field(:hashed_password, :string, redact: true)
     field(:confirmed_at, :naive_datetime)
@@ -43,6 +43,25 @@ defmodule Ps.Accounts.User do
     |> cast(attrs, [:password, :email])
     |> cast_assoc(:primary_profile, with: &Ps.Profiles.Profile.registration_changeset/2)
     |> validate_password(opts)
+    |> maybe_add_random_email
+  end
+
+  defp random_email do
+    s = for _ <- 1..10, into: "", do: <<Enum.random('0123456789abcdefghijz')>>
+    "#{s}@email.com"
+  end
+
+  defp maybe_add_random_email(changeset) do
+    email = get_change(changeset, :email)
+    IO.inspect(email, label: "email!!!")
+
+    if email == nil do
+      changeset
+      |> put_change(:email, random_email())
+      |> validate_required([:email])
+    else
+      changeset
+    end
   end
 
   defp validate_email(changeset, opts) do

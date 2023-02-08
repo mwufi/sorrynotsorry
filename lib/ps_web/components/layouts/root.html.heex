@@ -18,7 +18,7 @@
     />
   </head>
   <body class="bg-[rgb(245, 243, 239)] antialiased">
-    <header class="px-4 sm:px-6 lg:px-8 sticky top-0 z-10 bg-gray-900">
+    <header class="px-4 sm:px-6 lg:px-8 sticky top-0 z-10">
       <div class="flex items-center justify-between py-3">
         <div class="flex items-center gap-4">
           <a href="/">
@@ -71,6 +71,8 @@
         </div>
       </div>
     </header>
-    <%= @inner_content %>
+    <div class="isolate">
+      <%= @inner_content %>
+    </div>
   </body>
 </html>

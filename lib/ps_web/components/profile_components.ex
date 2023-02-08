@@ -34,4 +34,118 @@ defmodule PsWeb.ProfileComponents do
       """
     end
   end
+
+  @doc """
+  A nice yellow header for the top of the post
+  """
+  def big_header(assigns) do
+    ~H"""
+    <div class="top-0 left-0 right-0 bg-yellow-50 z-10">
+      <div class="flex items-center gap-4 p-4">
+        <img
+          src={@profile.avatar_url}
+          class="h-10 w-10 rounded-full"
+        />
+        <div class="flex-1">
+          <div class="text-gray-700 font-bold"><%= @profile.username %></div>
+          <div class="text-gray-400 text-sm">1 hour ago</div>
+        </div>
+        <div class="text-gray-400 text-sm">...</div>
+      </div>
+    </div>
+    """
+  end
+
+  @doc """
+  A helper component that allows you to a sticky profile pic
+  to the left of the post
+  """
+  def sticky_header(assigns) do
+    ~H"""
+    <div class="absolute top-0 left-0 h-full z-20">
+      <div class="sticky top-[4em]">
+        <div class="flex items-center h-16 w-16">
+          <img
+            src={@profile.avatar_url}
+            class="h-full w-full rounded"
+          />
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  @doc """
+  Displays a text post, comments and all!
+  """
+  def post(%{type: "text_post"} = assigns) do
+    ~H"""
+    <div class="relative flex justify-end grow">
+      <div class="bg-white rounded overflow-hidden w-full max-w-[540px]">
+        <div class="md:hidden">
+          <.big_header profile={@profile} />
+        </div>
+        <div class="hidden md:block">
+          <.sticky_header profile={@profile} />
+        </div>
+        <div class="text-gray-700 my-4 px-5 whitespace-pre-wrap"><%= @text |> String.trim() %></div>
+        <div class="FOOTER p-4">
+          <%!-- <.comment text={@comment} />
+          <a class="text-gray-400 text-sm mt-3 cursor-pointer hover:text-purple-400">View more...</a>
+          <div class="text-gray-400 text-sm mt-3">1 hour ago</div> --%>
+          <%!-- <div class="spacer mb-6" /> --%>
+          <.action_bar />
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  def post(%{type: "image_post"} = assigns) do
+    ~H"""
+    <div class="relative">
+      <div class="bg-white rounded overflow-hidden">
+        <.small_header profile={@profile} />
+        <img class="w-full" src={@image} />
+        <div class="FOOTER p-4">
+          <.comment text={@comment} />
+          <a class="text-gray-400 text-sm mt-3 cursor-pointer hover:text-purple-400">View more...</a>
+          <div class="text-gray-400 text-sm mt-3">1 hour ago</div>
+          <div class="spacer mb-6" />
+          <.action_bar />
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  @doc """
+  Displays how many notes a post has and some action buttons
+  """
+  def action_bar(assigns) do
+    ~H"""
+    <div class="flex">
+      <a class="left font-medium text-gray-500">12,523 notes</a>
+      <div class="ml-auto flex gap-2">
+        <Heroicons.ellipsis_horizontal class="w-6 h-6" />
+        <Heroicons.arrow_path_rounded_square class="w-6 h-6" />
+        <Heroicons.heart class="w-6 h-6" />
+      </div>
+    </div>
+    """
+  end
+
+  @doc """
+  Displays a comment
+  """
+  def comment(assigns) do
+    ~H"""
+    <div class="ONE-COMMENT">
+      <span class="COMMENT-USER font-bold">
+        <span class="COMMENT-USER-NAME">John Doe</span>
+      </span>
+      <span class="COMMENT-TEXT"><%= @text %></span>
+    </div>
+    """
+  end
 end
