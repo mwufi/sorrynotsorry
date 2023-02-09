@@ -11,13 +11,17 @@ defmodule PsWeb.ProfileComponents do
   A post component
   """
   attr(:padding, :string, default: "my-4 px-5")
+  attr(:profile, Ps.Profiles.Profile, required: true)
+  attr(:show_picture, :boolean, default: true)
 
   def small_header(assigns) do
     if assigns[:profile] do
       ~H"""
       <div class={"post-header #{assigns.padding} flex items-center"}>
-        <img src={@profile.avatar_url} class="w-8 h-8 rounded" />
-        <.link href={~p"/#{@profile.username}"} class="font-bold text-gray-700 ml-3 text-sm">
+        <%= if @show_picture do %>
+          <img src={@profile.avatar_url} class="w-8 h-8 rounded mr-3" />
+        <% end %>
+        <.link href={~p"/#{@profile.username}"} class="font-bold text-gray-700 text-sm">
           <%= @profile.username %>
         </.link>
       </div>
@@ -87,6 +91,7 @@ defmodule PsWeb.ProfileComponents do
         </div>
         <div class="hidden md:block">
           <.sticky_header profile={@profile} />
+          <.small_header profile={@profile} show_picture={false}/>
         </div>
         <div class="text-gray-700 my-4 px-5 whitespace-pre-wrap"><%= @text |> String.trim() %></div>
         <div class="FOOTER p-4">
