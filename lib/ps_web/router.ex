@@ -24,8 +24,7 @@ defmodule PsWeb.Router do
 
     get("/", PageController, :home)
     get("/p/:permalink", PostController, :show_permalink)
-    get("/editor", PageController, :editor)
-    get("/profile", PageController, :profile)
+    get("/test/:page", PageController, :plain_html)
     live("/live", PageLive, :other)
 
     get("/posts/new", PageController, :editor)

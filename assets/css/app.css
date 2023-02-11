@@ -14,10 +14,12 @@ outline: 3px solid #68cef8;
 border-radius: 5px;
 }
 
-body {
-    background-color: rgb(245, 243, 239);
-}
-
 html, body {
     min-height: 100%;
+}
+
+body {
+    background-color: rgb(245, 243, 239);
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
 }
