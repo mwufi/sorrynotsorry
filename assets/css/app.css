@@ -5,6 +5,18 @@
 /* This file is for your main application CSS */
 @import "markdown.css";
 
+.avatar{
+    display:inline-flex;flex-shrink:0;height:2.5rem;position:relative;width:2.5rem
+}
+.avatar>img{
+    -o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center}
+.avatar>.is-initial, .avatar>img {
+    height:100%; width:100%
+}
+.avatar>.is-initial{
+    align-items:center;display:flex;font-weight:500;justify-content:center
+}
+
 .ProseMirror:focus {
     outline: none;
 }

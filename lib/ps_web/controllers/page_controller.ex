@@ -30,7 +30,8 @@ defmodule PsWeb.PageController do
       profile: profile2,
       layout: false,
       show_header: false,
-      public_posts: Ps.Posts.list_public_posts()
+      public_posts: Ps.Posts.list_public_posts(),
+      chats: Ps.SampleData.chats()
     )
   end
 

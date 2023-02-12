@@ -1,0 +1,56 @@
+<div class="chat-container flex flex-col flex-1 h-screen w-full max-w-screen-sm mx-auto">
+<div class="chat-header p-3">
+chat header
+</div>
+<div class="chat-body grow overflow-auto px-2 py-5 space-y-5">
+    <%= for msg <- @chats do %>
+
+    <div class="flex items-start space-x-2.5 sm:space-x-5">
+        <div class="avatar">
+            <img class="rounded-full" src={msg.profile.avatar} alt="avatar">
+        </div>
+
+        <div class="flex flex-col items-start space-y-3.5">
+        <div class="mr-4 max-w-lg sm:mr-10">
+            <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm whitespace-pre-wrap"><%= msg.message |> String.trim %></div>
+            <p class="mt-1 ml-auto text-right text-xs text-slate-400">
+            08:16
+            </p>
+        </div>
+        </div>
+    </div>
+
+    <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
+        <div class="flex flex-col items-end space-y-3.5">
+        <div class="ml-4 max-w-lg sm:ml-10">
+            <div class="rounded-2xl rounded-tr-none bg-blue-500/10 p-3 text-slate-700 shadow-sm">
+            <%= msg.message %>
+            </div>
+        </div>
+        <div class="ml-4 max-w-lg sm:ml-10">
+            <div class="rounded-2xl rounded-tr-none bg-blue-500/10 p-3 text-slate-700 shadow-sm">
+            And that’s why a 15th century
+            </div>
+            <p class="mt-1 ml-auto text-left text-xs text-slate-400">
+            08:16
+            </p>
+        </div>
+        </div>
+        <div class="avatar">
+            <img class="rounded-full" src={msg.profile.avatar} alt="avatar">
+        </div>
+    </div>
+
+    <% end %>
+</div>
+
+<div class="chat-footer relative flex w-full shrink-0 items-center justify-between border-t border-slate-150 bg-white transition-[padding,width] duration-[.25s]">
+    <form class="flex gap-2 w-full items-center ">
+        <input type="text" rows="1" class="grow border-none focus:ring-0 rounded-xl p-4" placeholder="type a message" />
+        <button>
+            <Heroicons.paper_airplane class="h-8 w-8 text-blue-400 p-1 mx-2" />
+        </button>
+    </form>
+</div>
+
+</div>
