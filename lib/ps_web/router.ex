@@ -30,6 +30,8 @@ defmodule PsWeb.Router do
     get("/posts/new", PageController, :editor)
     resources("/posts", PostController, only: [:index, :show])
 
+    live "/test_upload", TestLive.Index, :index
+
     # Profile links (temporary)
     live("/links", LinkLive.Index, :index)
     live("/links/new", LinkLive.Index, :new)
