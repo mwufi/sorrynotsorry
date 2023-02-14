@@ -79,8 +79,42 @@
       </div>
     </header>
     <% end %>
-    <div class="isolate">
+    <div class="isolate mb-10">
       <%= @inner_content %>
     </div>
+    <%= if Map.get(assigns, :show_navbar, true) do %>
+    <div class="fixed left-0 bottom-0 w-full bg-white p-4 flex justify-around">
+        <a
+          href="/"
+          class="hover:cursor-pointer"
+        >
+          <Heroicons.home class="h-6 w-6 stroke-current" />
+        </a>
+        <a
+          href="/tweets"
+          class="hover:cursor-pointer"
+        >
+          <Heroicons.magnifying_glass class="h-6 w-6 stroke-current" />
+        </a>
+        <a
+          href="/profiles"
+          class="hover:cursor-pointer"
+        >
+          <Heroicons.globe_asia_australia class="h-6 w-6 stroke-current" />
+        </a>
+        <a
+          href="/posts"
+          class="hover:cursor-pointer"
+        >
+          <Heroicons.heart class="h-6 w-6 stroke-current" />
+        </a>
+         <a
+          href="/test/chat"
+          class="hover:cursor-pointer"
+        >
+          <Heroicons.chat_bubble_left class="h-6 w-6 stroke-current" />
+        </a>
+    </div>
+    <% end %>
   </body>
 </html>
