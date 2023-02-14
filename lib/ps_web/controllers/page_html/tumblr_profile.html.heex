@@ -1,0 +1,31 @@
+<div class="container max-w-3xl mx-auto text-center flex flex-col items-center mb-20">
+  <div class="img p-2 m-4">
+  
+    <img src={@profile.avatar} class="w-full object-cover rounded-full w-32 h-32" />
+  </div>
+  <h1 class="text-5xl font-bold text-zinc-800">
+    <%= @profile.name %>
+  </h1>
+  <div class="whitespace-pre-wrap text-zinc-500">
+    <%= @profile.byline |> String.trim() %>
+  </div>
+
+  <div class="flex flex-col gap-5 mt-10">
+    <%= for post <- @public_posts do %>
+      <div class="text-xs uppercase text-slate-500 my-2">
+        <%= post.inserted_at |> Calendar.strftime("%b %d") %>
+      </div>
+      <div
+        class="border bg-white rounded-xl p-6 px-8 hover:cursor-pointer mb-10 markdown-body"
+        phx-click={JS.navigate(~p"/posts/#{post.id}")}
+      >
+        <h1 class="title text-2xl">
+          <%= post.title %>
+        </h1>
+        <div class="text-zinc-500">
+          <%= post.content |> raw %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
