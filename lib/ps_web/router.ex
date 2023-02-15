@@ -40,6 +40,13 @@ defmodule PsWeb.Router do
     live("/links/:id", LinkLive.Show, :show)
     live("/links/:id/show/edit", LinkLive.Show, :edit)
 
+    live "/chats", ChatLive.Index, :index
+    live "/chats/new", ChatLive.Index, :new
+    live "/chats/:id/edit", ChatLive.Index, :edit
+
+    live "/chats/:id", ChatLive.Show, :show
+    live "/chats/:id/show/edit", ChatLive.Show, :edit
+
     # Show profiles
     live("/profiles", ProfileLive.Index, :index)
     live("/profiles/new", ProfileLive.Index, :new)
