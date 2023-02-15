@@ -10,6 +10,7 @@ defmodule Ps.Profiles.Profile do
     field(:bio, :string, default: "I am a new user")
     field(:name, :string)
     field(:username, :string)
+    field(:header_img_url, :string)
     belongs_to(:user, Ps.Accounts.User)
 
     has_many(:tweets, Ps.Tweets.Tweet)
