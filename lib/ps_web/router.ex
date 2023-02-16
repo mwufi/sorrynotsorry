@@ -62,8 +62,7 @@ defmodule PsWeb.Router do
 
     resources("/posts", PostController, except: [:index, :new, :show])
 
-    live("/:username/edit", ProfileLive.Index, :edit)
-    live("/:username/show/edit", ProfileLive.Show, :edit)
+    resources("/:username", ProfileController, only: [:show, :edit, :update], singleton: true)
 
     get("/:username/github", PageController, :github)
   end

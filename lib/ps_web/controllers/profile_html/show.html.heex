@@ -1,0 +1,21 @@
+
+  <div class="container max-w-3xl mx-auto flex flex-col items-center my-20">
+    <%= Phoenix.HTML.Tag.img_tag Ps.Avatar.url({@profile.header_img_url, @profile}, signed: true), class: "h-64 w-full object-cover" %>
+    <div class="img p-2 m-4">
+      <img src={@profile.avatar_url} class="w-full object-cover rounded-full w-32 h-32" />
+    </div>
+    <div>
+      <h1 class="text-5xl font-bold text-zinc-800">
+        <%= @profile.name %>
+      </h1>
+      <div class="text-zinc-500">
+        @<%= @profile.username %>
+      </div>
+    </div>
+    <div class="whitespace-pre-wrap text-zinc-500">
+      <%= @profile.bio |> String.trim() %>
+    </div>
+  </div>
+ <.link patch={~p"/#{@profile.username}/edit"} phx-click={JS.push_focus()}>
+    <.button>Edit profile</.button>
+  </.link>

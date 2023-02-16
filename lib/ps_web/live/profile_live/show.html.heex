@@ -3,7 +3,7 @@
     @<%= @profile.username %>
     <:subtitle>This is where you can edit your profile</:subtitle>
     <:actions>
-      <.link patch={~p"/#{@profile.username}/show/edit"} phx-click={JS.push_focus()}>
+      <.link patch={~p"/#{@profile.username}/edit"} phx-click={JS.push_focus()}>
         <.button>Edit profile</.button>
       </.link>
     </:actions>
@@ -24,6 +24,9 @@
     <div class="whitespace-pre-wrap text-zinc-500">
       <%= @profile.bio |> String.trim() %>
     </div>
+
+    <%= Phoenix.HTML.Tag.img_tag Ps.Avatar.url({@profile.header_img_url, @profile}, signed: true), class: "h-64 w-full object-cover" %>
+
   </div>
 
   <.back navigate={~p"/profiles"}>Back to profiles</.back>

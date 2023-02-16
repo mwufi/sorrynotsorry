@@ -79,3 +79,6 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+# For development, we use local file storage
+config :waffle, storage: Waffle.Storage.Local

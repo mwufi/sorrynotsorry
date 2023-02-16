@@ -24,6 +24,7 @@ defmodule PsWeb.ProfileLive.FormComponent do
         <.input field={{f, :name}} type="text" label="Name" />
         <.input field={{f, :bio}} type="text" label="Bio" />
         <.input field={{f, :avatar_url}} type="text" label="Avatar url" />
+        <.input field={{f, :header_img_url}} type="file" label="Header image" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Profile</.button>
         </:actions>
