@@ -27,6 +27,11 @@ defmodule PsWeb.ProfileController do
         |> put_flash(:info, "profile updated successfully.")
         |> redirect(to: ~p"/#{profile.username}")
 
+      {:error, :unauthorized} ->
+        conn
+        |> put_flash(:error, "lol, you can't update this profile!")
+        |> redirect(to: ~p"/#{profile.username}")
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :edit, profile: profile, changeset: changeset)
     end
