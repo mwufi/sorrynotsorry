@@ -38,6 +38,10 @@ defmodule Ps.Profiles do
   """
   def get_profile!(id), do: Repo.get!(Profile, id)
 
+  def random_profile do
+    Repo.one(from(p in Profile, order_by: fragment("RANDOM()"), limit: 1))
+  end
+
   def get_profile_by_username!(username),
     do: Repo.one(from(p in Profile, where: p.username == ^username))
 

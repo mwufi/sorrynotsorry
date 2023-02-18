@@ -16,7 +16,7 @@ defmodule PsWeb.PageController do
 
   def plain_html(conn, %{"page" => page}) do
     render(conn, "#{page}.html",
-      profile: Ps.Profiles.get_profile!(12),
+      profile: Ps.Profiles.random_profile(),
       layout: false,
       show_header: false,
       public_posts: Ps.Posts.list_public_posts(),
