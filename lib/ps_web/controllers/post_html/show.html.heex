@@ -1,10 +1,12 @@
-<%= if @can_edit do %>
+<div class="MIDDLE mx-auto md:w-fit flex">
+  <div class="w-full md:w-[625px] grid grid-cols-1 p-4">
+  <%= if @can_edit do %>
   <.link href={~p"/posts/#{@post}/edit"} class="fixed bottom-6 right-6">
     <.button>Edit metadata</.button>
   </.link>
 <% end %>
 
-<.small_header profile={@author_profile} padding="mb-8" />
+<.small_header profile={@author_profile} padding="md:mb-8" />
 
 <%= if @post.permalink do %>
   Permalink:
@@ -25,6 +27,7 @@
 <div class="hidden post-content"><%= raw(@post.content) %></div>
 
 <%= if @can_edit do %>
+<div class="sticky bottom-0 bg-white">
   <button
     class="px-4 py-2 border mb-4"
     id="save-button"
@@ -35,6 +38,9 @@
   <button class="px-4 py-2 border mb-4" id="add-image-button" onclick="addImage()">
     add an image
   </button>
+  </div>
 <% end %>
 
 <.back navigate={~p"/posts"}>Back to posts</.back>
+</div>
+</div>

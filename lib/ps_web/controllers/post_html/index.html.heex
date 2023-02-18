@@ -1,4 +1,7 @@
-<.header>
+<div class="MIDDLE mx-auto md:w-fit flex">
+  <div class="w-full md:w-[625px] grid grid-cols-1 p-4">
+
+  <.header>
   <%= if @current_user do %>
     Your Posts
   <% end %>
@@ -35,13 +38,17 @@
 <.header>
   Public Posts
 </.header>
-
-<.table id="posts" rows={@public_posts} row_click={&JS.navigate(~p"/posts/#{&1}")}>
-  <:col :let={post} label="Title"><%= post.title %></:col>
-  <:col :let={post} label="Subtitle"><%= post.subtitle %></:col>
-  <:action :let={post}>
+<div class="grid grid-cols-1 py-8">
+<%= for post <- @public_posts do %>
+  <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" phx-click={JS.navigate(~p"/posts/#{post}")}>
+    <div class="text-gray-700 font-medium text-lg"><%= post.title %></div>
+    <div class="text-gray-400 italic "><%= post.subtitle %></div>
     <div class="sr-only">
       <.link navigate={~p"/posts/#{post}"}>Show</.link>
     </div>
-  </:action>
-</.table>
+  </div>
+<% end %>
+</div>
+
+  </div>
+</div>

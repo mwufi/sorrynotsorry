@@ -7,7 +7,7 @@ defmodule PsWeb.TweetLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :tweets, list_tweets())}
+    {:ok, assign(socket, tweets: list_tweets(), profile_recommendations: Ps.Profiles.list_profiles())}
   end
 
   @impl true

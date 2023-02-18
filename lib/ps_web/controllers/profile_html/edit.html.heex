@@ -1,6 +1,7 @@
-
-  <div class="container max-w-3xl mx-auto flex flex-col items-center my-20">
-    <%= Phoenix.HTML.Tag.img_tag Ps.Avatar.url({@profile.header_img_url, @profile}, signed: true), class: "h-64 w-full object-cover" %>
+<%= Phoenix.HTML.Tag.img_tag Ps.Avatar.url({@profile.header_img_url, @profile}, signed: true), class: "h-64 w-full object-cover" %>
+<div class="MIDDLE mx-auto md:w-fit flex">
+  <div class="w-full md:w-[625px] grid grid-cols-1">
+  <div class="mx-auto flex flex-col items-center pb-20 p-4">
     <div class="img p-2 m-4">
       <img src={@profile.avatar_url} class="w-full object-cover rounded-full w-32 h-32" />
     </div>
@@ -15,18 +16,24 @@
     <div class="whitespace-pre-wrap text-zinc-500">
       <%= @profile.bio |> String.trim() %>
     </div>
+    <.link patch={~p"/#{@profile.username}/edit"} phx-click={JS.push_focus()} class={"sticky bottom-0"}>
+      <.button>Edit profile</.button>
+    </.link>
   </div>
 
-<.simple_form :let={f} for={@changeset} method="put" multipart={true} action={~p"/#{@profile.username}"}>
-  <.error :if={@changeset.action}>
-    Oops, something went wrong! Please check the errors below.
-  </.error>
-  <.input field={{f, :username}} type="text" label="Username" />
-  <.input field={{f, :name}} type="text" label="Name" />
-  <.input field={{f, :bio}} type="text" label="Bio" />
-  <.input field={{f, :avatar_url}} type="text" label="Avatar url" />
-  <%= Phoenix.HTML.Form.file_input f, :header_img_url %>
-  <:actions>
-    <.button>Save</.button>
-  </:actions>
-</.simple_form>
+  <.simple_form :let={f} for={@changeset} method="put" multipart={true} action={~p"/#{@profile.username}"}>
+    <.error :if={@changeset.action}>
+      Oops, something went wrong! Please check the errors below.
+    </.error>
+    <.input field={{f, :username}} type="text" label="Username" />
+    <.input field={{f, :name}} type="text" label="Name" />
+    <.input field={{f, :bio}} type="text" label="Bio" />
+    <.input field={{f, :avatar_url}} type="text" label="Avatar url" />
+    <%= Phoenix.HTML.Form.file_input f, :header_img_url %>
+    <:actions>
+      <.button>Save</.button>
+    </:actions>
+  </.simple_form>
+
+</div>
+</div>

@@ -2,8 +2,10 @@ defmodule PsWeb.PageController do
   use PsWeb, :controller
 
   def home(conn, _params) do
-    # A list of recommended profiles to follow
+    changeset = Ps.Tweets.change_tweet(%Ps.Tweets.Tweet{})
+
     render(conn, :twitter,
+      changeset: changeset,
       layout: false,
       tweets: Ps.Tweets.list_tweets(),
       profile_recommendations: Ps.Profiles.list_profiles()

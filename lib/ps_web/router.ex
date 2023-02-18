@@ -22,7 +22,7 @@ defmodule PsWeb.Router do
   scope "/", PsWeb do
     pipe_through(:browser)
 
-    get("/", PageController, :home)
+    live("/", TweetLive.Index, :index)
     get("/p/:permalink", PostController, :show_permalink)
     get("/test/:page", PageController, :plain_html)
     live("/live", PageLive, :other)

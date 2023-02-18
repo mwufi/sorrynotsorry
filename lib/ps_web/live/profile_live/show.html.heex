@@ -1,3 +1,6 @@
+<div class="MIDDLE mx-auto md:w-fit flex">
+  <div class="w-full md:w-[625px] grid grid-cols-1 p-4">
+
 <%= if @profile != nil do %>
   <.header>
     @<%= @profile.username %>
@@ -9,7 +12,7 @@
     </:actions>
   </.header>
 
-  <div class="container max-w-3xl mx-auto flex flex-col items-center my-20">
+  <div class="container max-w-3xl mx-auto flex flex-col items-center mb-20">
     <div class="img p-2 m-4">
       <img src={@profile.avatar_url} class="w-full object-cover rounded-full w-32 h-32" />
     </div>
@@ -70,3 +73,6 @@
 
   <.back navigate={~p"/profiles"}>Back to profiles</.back>
 <% end %>
+
+</div>
+</div>
