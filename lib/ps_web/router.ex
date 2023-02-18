@@ -52,6 +52,7 @@ defmodule PsWeb.Router do
     live("/profiles/new", ProfileLive.Index, :new)
   end
 
+  # Tweets
   scope "/", PsWeb do
     pipe_through([:browser, :require_authenticated_user])
 
@@ -61,10 +62,6 @@ defmodule PsWeb.Router do
     live("/tweets/:id/show/edit", TweetLive.Show, :edit)
 
     resources("/posts", PostController, except: [:index, :new, :show])
-
-    resources("/:username", ProfileController, only: [:show, :edit, :update], singleton: true)
-
-    get("/:username/github", PageController, :github)
   end
 
   scope "/", PsWeb do
@@ -73,7 +70,15 @@ defmodule PsWeb.Router do
     # Tweets (temporary)
     live("/tweets", TweetLive.Index, :index)
     live("/tweets/:id", TweetLive.Show, :show)
+  end
 
+  # Username
+  scope "/", PsWeb do
+    pipe_through([:browser, :require_authenticated_user])
+    resources("/:username", ProfileController, only: [:show, :edit, :update], singleton: true)
+  end
+  scope "/", PsWeb do
+    pipe_through([:browser])
     live("/:username", ProfileLive.Show, :show)
   end
 

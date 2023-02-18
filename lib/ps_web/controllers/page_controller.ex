@@ -3,7 +3,7 @@ defmodule PsWeb.PageController do
 
   def home(conn, _params) do
     # A list of recommended profiles to follow
-    render(conn, :tumblr,
+    render(conn, :twitter,
       layout: false,
       tweets: Ps.Tweets.list_tweets(),
       profile_recommendations: Ps.Profiles.list_profiles()

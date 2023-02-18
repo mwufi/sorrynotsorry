@@ -31,7 +31,7 @@ html, body {
 }
 
 body {
-    background-color: rgb(245, 243, 239);
+    /* background-color: rgb(245, 243, 239); */
     overscroll-behavior-y: none;
     overscroll-behavior-x: none;
 }

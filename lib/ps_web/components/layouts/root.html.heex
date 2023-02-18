@@ -17,7 +17,7 @@
       rel="stylesheet"
     />
   </head>
-  <body class="bg-[rgb(245, 243, 239)] antialiased">
+  <body class="antialiased">
     <%= if Map.get(assigns, :show_header, true) do  %>
     <header class="px-4 sm:px-6 lg:px-8 sticky top-0 z-10">
       <div class="flex items-center justify-between py-3">
@@ -83,7 +83,7 @@
       <%= @inner_content %>
     </div>
     <%= if Map.get(assigns, :show_navbar, true) do %>
-    <div class="md:hidden fixed left-0 bottom-0 w-full bg-white p-4 flex justify-around">
+    <div class="md:hidden fixed left-0 bottom-0 w-full bg-white p-4 flex justify-around border-t">
         <a
           href="/"
           class="hover:cursor-pointer"
