@@ -8,7 +8,7 @@ defmodule PsWeb.TweetLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        <%= @title %>
+        morning, <%= @current_profile.username %>
         <:subtitle>Hello, <%= @current_profile.username %></:subtitle>
       </.header>
 
@@ -20,10 +20,19 @@ defmodule PsWeb.TweetLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={{f, :content}} type="text" label="Content" />
-        <.input field={{f, :hashtags}} type="text" label="Hashtags" />
+        <%!-- blue input box --%>
+        <textarea class="
+          w-full
+          px-3
+          py-2
+          text-gray-700
+          border
+          rounded-lg
+          focus:outline-none
+          focus:shadow-outline
+        " phx-change="validate" phx-submit="save" name="tweet[content]" placeholder="What's happening?"></textarea>
         <:actions>
-          <.button phx-disable-with="Saving...">Save Tweet</.button>
+          <.button phx-disable-with="Saving..." class="bg-blue-500">Save Tweet</.button>
         </:actions>
       </.simple_form>
     </div>
@@ -71,7 +80,7 @@ defmodule PsWeb.TweetLive.FormComponent do
     end
   end
 
-  defp save_tweet(socket, :new, tweet_params) do
+  defp save_tweet(socket, :index, tweet_params) do
     case Tweets.create_tweet_for_profile(
            socket.assigns.current_profile,
            tweet_params

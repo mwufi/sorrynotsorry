@@ -2,9 +2,15 @@
   <div class="w-full md:w-[625px] grid grid-cols-1 divide-y border-l border-r" phx-update="replace" id="foo">
     <div class="m-10">
       <%= if assigns[:current_user] do %>
-      <.link patch={~p"/tweets/new"}>
-        <.button>New Tweet</.button>
-      </.link>
+        <.live_component
+          module={PsWeb.TweetLive.FormComponent}
+          id={:new}
+          title={@page_title}
+          action={@live_action}
+          tweet={@tweet}
+          current_profile={@current_user.primary_profile}
+          navigate={~p"/tweets"}
+        />
       <% else %>
       <p class="mb-5 text-xl">Sign up or log in to Tweet!</p>
       <.link patch={~p"/users/register"}>
