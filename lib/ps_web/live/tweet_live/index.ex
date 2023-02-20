@@ -7,7 +7,15 @@ defmodule PsWeb.TweetLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, tweets: list_tweets(), profile_recommendations: Ps.Profiles.list_profiles())}
+    {:ok,
+     assign(socket, tweets: list_tweets(), profile_recommendations: Ps.Profiles.list_profiles())}
+  end
+
+  def handle_event("like", %{"id" => tweet_id}, socket) do
+    Tweets.like_tweet(tweet_id, socket.assigns.current_user.primary_profile)
+
+    # assign tweets again?
+    {:noreply, assign(socket, tweets: list_tweets())}
   end
 
   @impl true

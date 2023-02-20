@@ -1,5 +1,5 @@
 <div class="MIDDLE mx-auto md:w-fit flex">
-  <div class="w-full md:w-[625px] grid grid-cols-1 divide-y border-l border-r">
+  <div class="w-full md:w-[625px] grid grid-cols-1 divide-y border-l border-r" phx-update="replace" id="foo">
     <div class="m-10">
       <%= if assigns[:current_user] do %>
       <.link patch={~p"/tweets/new"}>
@@ -24,11 +24,7 @@
     </div>
 
     <%= for text_post <- @tweets do %>
-      <PsWeb.Twitter.Tweet.c
-        text={text_post.content}
-        comment={text_post.hashtags}
-        profile={text_post.profile}
-      />
+      <PsWeb.Twitter.Tweet.c tweet={text_post} />
     <% end %>
 
   </div>
