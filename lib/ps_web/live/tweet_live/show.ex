@@ -14,7 +14,14 @@ defmodule PsWeb.TweetLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:tweet, Tweets.get_tweet!(id))}
+     |> assign(:tweet, Tweets.get_tweet!(id) |> Ps.Repo.preload(:profile))}
+  end
+
+  def handle_event("like", %{"id" => tweet_id}, socket) do
+    Tweets.like_tweet(tweet_id, socket.assigns.current_user.primary_profile)
+
+    # assign tweets again?
+    {:noreply, assign(socket, tweets: Tweets.list_tweets())}
   end
 
   defp page_title(:show), do: "Show Tweet"

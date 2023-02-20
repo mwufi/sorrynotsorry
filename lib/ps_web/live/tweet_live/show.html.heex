@@ -1,19 +1,22 @@
-<.header>
-  Tweet <%= @tweet.id %>
-  <:subtitle>This is a tweet record from your database.</:subtitle>
-  <:actions>
+<div class="MIDDLE mx-auto md:w-fit flex">
+  <div class="w-full md:w-[625px] grid grid-cols-1 divide-y border-l border-r" phx-update="replace" id="foo">
+
+    <div class="py-2">
+    </div>
+
+    <PsWeb.Twitter.Tweet.big tweet={@tweet} />
+
+    <div class="p-4">
+      <.back navigate={~p"/tweets"}>Back to tweets</.back>
+    </div>
+  </div>
+  <div class="hidden lg:block lg:w-[320px] ml-8">
+    <div class="text-xl font-bold text-gray-700 border-b p-2 mb-2">Stuff you can do</div>
     <.link patch={~p"/tweets/#{@tweet}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit tweet</.button>
     </.link>
-  </:actions>
-</.header>
-
-<.list>
-  <:item title="Content"><%= @tweet.content %></:item>
-  <:item title="Hashtags"><%= @tweet.hashtags %></:item>
-</.list>
-
-<.back navigate={~p"/tweets"}>Back to tweets</.back>
+  </div>
+</div>
 
 <%= if assigns[:current_user] do %>
   <.modal

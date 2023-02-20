@@ -29,8 +29,8 @@
       </div>
     </div>
 
-    <%= for text_post <- @tweets do %>
-      <PsWeb.Twitter.Tweet.c tweet={text_post} />
+    <%= for tweet <- @tweets do %>
+      <PsWeb.Twitter.Tweet.c tweet={tweet} navigate={~p"/tweets/#{tweet.id}"}/>
     <% end %>
 
   </div>
