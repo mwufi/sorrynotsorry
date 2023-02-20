@@ -15,10 +15,19 @@ defmodule PsWeb.TweetLive.Index do
   end
 
   def handle_event("like", %{"id" => tweet_id}, socket) do
-    Tweets.like_tweet(tweet_id, socket.assigns.current_user.primary_profile)
+    case socket.assigns.current_user do
+      nil ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "You must be logged in to like a tweet.")
+         |> redirect(to: ~p"/users/log_in")}
 
-    # assign tweets again?
-    {:noreply, assign(socket, tweets: list_tweets())}
+      _ ->
+        Tweets.like_tweet(tweet_id, socket.assigns.current_user.primary_profile)
+
+        # assign tweets again?
+        {:noreply, assign(socket, tweets: list_tweets())}
+    end
   end
 
   @impl true
