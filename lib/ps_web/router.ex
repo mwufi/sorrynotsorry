@@ -75,11 +75,11 @@ defmodule PsWeb.Router do
   # Username
   scope "/", PsWeb do
     pipe_through([:browser, :require_authenticated_user])
-    resources("/:username", ProfileController, only: [:show, :edit, :update], singleton: true)
+    resources("/:username", ProfileController, only: [:edit, :update], singleton: true)
   end
   scope "/", PsWeb do
     pipe_through([:browser])
-    live("/:username", ProfileLive.Show, :show)
+    get "/:username", ProfileController, :show
   end
 
   # Other scopes may use custom stacks.
