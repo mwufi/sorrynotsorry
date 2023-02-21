@@ -13,7 +13,7 @@ defmodule PsWeb.PageController do
   end
 
   def editor(conn, _params) do
-    render(conn, :editor)
+    render(conn, :editor, layout: false)
   end
 
   def plain_html(conn, %{"page" => page}) do

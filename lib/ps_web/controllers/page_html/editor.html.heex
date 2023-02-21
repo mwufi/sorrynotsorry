@@ -1,8 +1,19 @@
-<div class="element markdown-body"></div>
+<div class="min-h-[85vh] bg-gray-50 py-8 flex flex-col justify-center relative overflow-hidden lg:py-12">
+  <img src="/images/beams.jpg" alt="" class="fixed top-48 left-1/2 -translate-x-2/3 -translate-y-1/2 max-w-none" width="1308" />
+  <div class="absolute inset-0 bg-[url(/img/grid.svg)] bg-top [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+  <div class="relative w-full px-6 py-12 bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5 md:max-w-3xl md:mx-auto lg:max-w-4xl lg:pt-16 lg:pb-28">
+
+    <div class="this-is-where-the-text-goes element mt-8 prose prose-slate mx-auto lg:prose-lg">
+    </div>
+    <div class="fixed bottom-10 right-10">
+      <button class="px-4 py-2 border mb-4" id="save-button" onclick="save()">Save post!</button>
+      <button class="px-4 py-2 border mb-4" id="add-image-button" onclick="addImage()">
+        add an image
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="post-content hidden">
   <p>Some text</p>
 </div>
-<button class="px-4 py-2 border mb-4" id="save-button" onclick="save()">Save post!</button>
-<button class="px-4 py-2 border mb-4" id="add-image-button" onclick="addImage()">
-  add an image
-</button>
