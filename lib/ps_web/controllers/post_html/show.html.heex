@@ -6,7 +6,6 @@
   </.link>
 <% end %>
 
-<.small_header profile={@author_profile} padding="md:mb-8" />
 
 <%= if @post.permalink do %>
   Permalink:
@@ -21,6 +20,8 @@
     <:subtitle><%= @post.subtitle %></:subtitle>
   </.header>
 <% end %>
+
+<.small_header profile={@author_profile} padding="md:mb-8" />
 
 <div class="element markdown-body"></div>
 

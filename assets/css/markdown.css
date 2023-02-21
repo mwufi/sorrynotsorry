@@ -1,10 +1,10 @@
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  /* font-family: 'Spectral',serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; */
+  font-family: 'Spectral',serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
   color: rgb(64,64,64);
   word-wrap: break-word;
-  /* @apply text-[17px] md:text-[19px] leading-relaxed; */
+  @apply text-[17px] md:text-[19px] leading-relaxed;
 }
 
 /* define variables */

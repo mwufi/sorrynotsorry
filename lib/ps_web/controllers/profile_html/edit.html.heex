@@ -1,21 +1,24 @@
-<%= Phoenix.HTML.Tag.img_tag Ps.Avatar.url({@profile.header_img_url, @profile}, signed: true), class: "h-64 w-full object-cover" %>
+<header id="blog-header" class="has-cover bg-black/20 relative h-[50vh] flex justify-center items-center">
+	<div class="text-center pb-10 text-white">
+		<nav id="navigation z-20 relative">
+			<span id="menu-button" class="nav-button">
+				<a class="menu-button"><i class="ic ic-menu"></i> Hi</a>
+				<a class="menu-button"><i class="ic ic-menu"></i> @<%= @profile.username %></a>
+			</span>
+		</nav>
+		<h1 class="blog-name text-6xl leading-loose font-bold z-20 relative">
+        <.link patch={~p"/#{@profile.username}"}><%= @profile.name %></.link>
+    </h1>
+		<span class="blog-description text-2xl leading-loose z-20 relative">
+      <%= @profile.bio |> String.trim() %>
+    </span>
+    <div class="blog-cover cover z-10" style="transform: translate3d(0px, 0px, 0px);"></div>
+	</div>
+</header>
+
 <div class="MIDDLE mx-auto md:w-fit flex">
   <div class="w-full md:w-[625px] grid grid-cols-1">
   <div class="mx-auto flex flex-col items-center pb-20 p-4">
-    <div class="img p-2 m-4">
-      <img src={@profile.avatar_url} class="w-full object-cover rounded-full w-32 h-32" />
-    </div>
-    <div>
-      <h1 class="text-5xl font-bold text-zinc-800">
-        <%= @profile.name %>
-      </h1>
-      <div class="text-zinc-500">
-        @<%= @profile.username %>
-      </div>
-    </div>
-    <div class="whitespace-pre-wrap text-zinc-500">
-      <%= @profile.bio |> String.trim() %>
-    </div>
     <.link patch={~p"/#{@profile.username}/edit"} phx-click={JS.push_focus()} class={"sticky bottom-0"}>
       <.button>Edit profile</.button>
     </.link>
@@ -34,6 +37,7 @@
       <.button>Save</.button>
     </:actions>
   </.simple_form>
+</div>
+</div>
 
-</div>
-</div>
+<%= Phoenix.HTML.Tag.img_tag Ps.Avatar.url({@profile.header_img_url, @profile}, signed: true), class: "h-64 w-full object-cover" %>
