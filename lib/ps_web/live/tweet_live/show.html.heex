@@ -9,6 +9,51 @@
     <div class="p-4">
       <.back navigate={~p"/tweets"}>Back to tweets</.back>
     </div>
+
+    <div class="chat-container relative">
+      <div class="p-4 z-20 bg-white border-b sticky top-14 font-bold">
+        Leave a comment!
+      </div>
+      <div class="p-4 isolate z-10">
+      <%= for i <- 1..4 do %>
+        <div class="flex items-start space-x-2.5 sm:space-x-5">
+          <div class="avatar">
+              <img class="rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="avatar">
+          </div>
+
+          <div class="flex flex-col items-start space-y-3.5">
+          <div class="mr-4 max-w-lg sm:mr-10">
+              <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm whitespace-pre-wrap"><%= "other message" %></div>
+              <p class="mt-1 ml-auto text-right text-xs text-slate-400">
+              08:16
+              </p>
+          </div>
+          </div>
+      </div>
+        <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
+          <div class="flex flex-col items-end space-y-3.5">
+          <div class="ml-4 max-w-lg sm:ml-10">
+              <div class="rounded-2xl rounded-tr-none bg-blue-500/10 p-3 text-slate-700 shadow-sm">
+              <%= "comment" %>
+              </div>
+          </div>
+          <div class="ml-4 max-w-lg sm:ml-10">
+              <div class="rounded-2xl rounded-tr-none bg-blue-500/10 p-3 text-slate-700 shadow-sm">
+              And that’s why a 15th century
+              </div>
+              <p class="mt-1 ml-auto text-left text-xs text-slate-400">
+              08:16
+              </p>
+          </div>
+          </div>
+          <div class="avatar">
+              <img class="rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="avatar">
+          </div>
+      </div>
+      <% end %>
+      </div>
+    </div>
+
   </div>
   <div class="hidden lg:block lg:w-[320px] ml-8">
     <div class="text-xl font-bold text-gray-700 border-b p-2 mb-2">Stuff you can do</div>
