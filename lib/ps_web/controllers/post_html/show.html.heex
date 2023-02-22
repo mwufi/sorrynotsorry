@@ -1,47 +1,47 @@
 <div class="MIDDLE mx-auto md:w-fit flex">
-  <div class="w-full md:w-[675px] grid grid-cols-1 p-4">
-  <%= if @can_edit do %>
-  <.link href={~p"/posts/#{@post}/edit"} class="fixed bottom-6 right-6">
-    <.button>Edit metadata</.button>
-  </.link>
-<% end %>
+  <div class="w-full max-w-prose grid grid-cols-1 p-4">
+    <%= if @can_edit do %>
+      <.link href={~p"/posts/#{@post}/edit"} class="fixed bottom-6 right-6">
+        <.button>Edit metadata</.button>
+      </.link>
+    <% end %>
 
 
-<%= if @post.permalink do %>
-  Permalink:
-  <.link href={~p"/p/#{@post.permalink}"} class="underline text-purple-500 px-1">
-    /p/<%= @post.permalink %>
-  </.link>
-<% end %>
+    <%= if @post.permalink do %>
+      Permalink:
+      <.link href={~p"/p/#{@post.permalink}"} class="underline text-purple-500 px-1">
+        /p/<%= @post.permalink %>
+      </.link>
+    <% end %>
 
-<%= if @post.title != "test" do %>
-  <.header class="my-8">
-    <%= @post.title %>
-    <:subtitle><%= @post.subtitle %></:subtitle>
-  </.header>
-<% end %>
+    <%= if @post.title != "test" do %>
+      <.header class="my-8">
+        <%= @post.title %>
+        <:subtitle><%= @post.subtitle %></:subtitle>
+      </.header>
+    <% end %>
 
-<.small_header profile={@author_profile} padding="md:mb-8" />
+    <.small_header profile={@author_profile} padding="md:mb-8" />
 
-<div class="element prose"></div>
+    <div class="element prose lg:text-lg"></div>
 
-<div class="hidden post-content"><%= raw(@post.content) %></div>
+    <div class="hidden post-content"><%= raw(@post.content) %></div>
 
-<%= if @can_edit do %>
-<div class="sticky bottom-0 bg-white">
-  <button
-    class="px-4 py-2 border mb-4"
-    id="save-button"
-    onclick={"updatePost(" <> Integer.to_string(@post.id) <> ")"}
-  >
-    Save
-  </button>
-  <button class="px-4 py-2 border mb-4" id="add-image-button" onclick="addImage()">
-    add an image
-  </button>
+    <%= if @can_edit do %>
+    <div class="sticky bottom-0 bg-white">
+      <button
+        class="px-4 py-2 border mb-4"
+        id="save-button"
+        onclick={"updatePost(" <> Integer.to_string(@post.id) <> ")"}
+      >
+        Save
+      </button>
+      <button class="px-4 py-2 border mb-4" id="add-image-button" onclick="addImage()">
+        add an image
+      </button>
+      </div>
+    <% end %>
+
+    <.back navigate={~p"/posts"}>Back to posts</.back>
   </div>
-<% end %>
-
-<.back navigate={~p"/posts"}>Back to posts</.back>
-</div>
 </div>
