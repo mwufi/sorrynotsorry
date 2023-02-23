@@ -1,13 +1,8 @@
 <div class="MIDDLE mx-auto md:w-fit flex">
   <div class="w-full md:w-[625px] grid grid-cols-1 divide-y border-l border-r" phx-update="replace" id="foo">
 
-    <div class="py-2">
-    </div>
-
-    <PsWeb.Twitter.Tweet.big tweet={@tweet} />
-
     <div class="p-4">
-      <.back navigate={~p"/tweets"}>Back to tweets</.back>
+      <.back navigate={~p"/tweets"} padding="">Back to tweets</.back>
     </div>
 
     <div class="chat-container relative">
@@ -15,6 +10,20 @@
         Leave a comment!
       </div>
       <div class="p-4 isolate z-10">
+        <div class="flex items-start space-x-2.5 sm:space-x-5">
+          <div class="avatar">
+              <img class="rounded-full" src={@tweet.profile.avatar_url} alt="avatar">
+          </div>
+
+          <div class="flex flex-col items-start space-y-3.5">
+          <div class="mr-4 max-w-lg sm:mr-10">
+              <div class="rounded-2xl rounded-tl-none bg-orange-200 p-3 text-slate-700 shadow-sm whitespace-pre-wrap"><%= @tweet.content %></div>
+              <p class="mt-1 ml-auto text-right text-xs text-slate-400">
+              08:16
+              </p>
+          </div>
+          </div>
+        </div>
       <%= for i <- 1..4 do %>
         <div class="flex items-start space-x-2.5 sm:space-x-5">
           <div class="avatar">
@@ -29,7 +38,7 @@
               </p>
           </div>
           </div>
-      </div>
+        </div>
         <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
           <div class="flex flex-col items-end space-y-3.5">
           <div class="ml-4 max-w-lg sm:ml-10">
