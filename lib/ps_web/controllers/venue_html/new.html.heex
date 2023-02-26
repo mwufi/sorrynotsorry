@@ -1,0 +1,18 @@
+<.header>
+  New Venue
+  <:subtitle>Use this form to manage venue records in your database.</:subtitle>
+</.header>
+
+<.simple_form :let={f} for={@changeset} action={~p"/venues"}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={{f, :name}} type="text" label="Name" />
+  <.input field={{f, :description}} type="text" label="Description" />
+  <.input field={{f, :color}} type="text" label="Color" />
+  <:actions>
+    <.button>Save Venue</.button>
+  </:actions>
+</.simple_form>
+
+<.back navigate={~p"/venues"}>Back to venues</.back>
