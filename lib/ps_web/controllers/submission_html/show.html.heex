@@ -1,0 +1,17 @@
+<.header>
+  Submission <%= @submission.id %>
+  <:subtitle>This is a submission record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/submissions/#{@submission}/edit"}>
+      <.button>Edit submission</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @submission.name %></:item>
+  <:item title="Body"><%= @submission.body %></:item>
+  <:item title="Link"><%= @submission.link %></:item>
+</.list>
+
+<.back navigate={~p"/submissions"}>Back to submissions</.back>
