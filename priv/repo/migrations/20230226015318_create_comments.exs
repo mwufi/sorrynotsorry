@@ -4,8 +4,8 @@ defmodule Ps.Repo.Migrations.CreateComments do
   def change do
     create table(:comments) do
       add :body, :text
-      add :submission_id, references(:submissions, on_delete: :nothing)
-      add :author_id, references(:profiles, on_delete: :nothing)
+      add :submission_id, references(:submissions, on_delete: :delete_all)
+      add :author_id, references(:profiles, on_delete: :delete_all)
 
       timestamps()
     end

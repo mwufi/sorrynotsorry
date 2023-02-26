@@ -6,7 +6,7 @@ defmodule Ps.Repo.Migrations.CreateSubmissions do
       add :name, :string
       add :body, :text
       add :link, :string
-      add :author_id, references(:profiles, on_delete: :nothing)
+      add :author_id, references(:profiles, on_delete: :delete_all)
 
       timestamps()
     end

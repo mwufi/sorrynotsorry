@@ -32,6 +32,10 @@ defmodule PsWeb.Router do
 
     live "/test_upload", TestLive.Index, :index
 
+    resources "/comments", CommentController
+    resources "/submissions", SubmissionController
+    resources "/venues", VenueController
+
     # Profile links (temporary)
     live("/links", LinkLive.Index, :index)
     live("/links/new", LinkLive.Index, :new)
@@ -72,7 +76,7 @@ defmodule PsWeb.Router do
     live("/tweets/:id", TweetLive.Show, :show)
   end
 
-  # Username
+  # Username (must be last bc it is a catch-all)
   scope "/", PsWeb do
     pipe_through([:browser, :require_authenticated_user])
     resources("/:username", ProfileController, only: [:edit, :update], singleton: true)
