@@ -1,0 +1,16 @@
+<.header>
+  New Comment
+  <:subtitle>Use this form to manage comment records in your database.</:subtitle>
+</.header>
+
+<.simple_form :let={f} for={@changeset} action={~p"/comments"}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={{f, :body}} type="text" label="Body" />
+  <:actions>
+    <.button>Save Comment</.button>
+  </:actions>
+</.simple_form>
+
+<.back navigate={~p"/comments"}>Back to comments</.back>
