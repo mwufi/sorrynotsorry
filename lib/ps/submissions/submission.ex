@@ -6,7 +6,9 @@ defmodule Ps.Submissions.Submission do
     field :body, :string
     field :link, :string
     field :name, :string
-    field :author_id, :id
+
+    belongs_to :author, Ps.Profiles.Profile
+    many_to_many :comments, Ps.Comments.Comment, join_through: "submission_comments"
 
     timestamps()
   end
