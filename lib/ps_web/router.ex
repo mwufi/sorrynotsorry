@@ -30,6 +30,7 @@ defmodule PsWeb.Router do
     get("/posts/new", PageController, :editor)
     resources("/posts", PostController, only: [:index, :show])
 
+    live "/habits", HabitLive, :index
     live "/test_upload", TestLive.Index, :index
 
     resources "/comments", CommentController
