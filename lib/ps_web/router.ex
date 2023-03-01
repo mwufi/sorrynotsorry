@@ -19,19 +19,23 @@ defmodule PsWeb.Router do
     plug(:fetch_current_user)
   end
 
+  scope "/test", PsWeb do
+    pipe_through :browser
+
+    get("/p/:page", PageController, :plain_html)
+    live "/habits", HabitLive, :index
+    live "/liveupload", TestLive.Index, :index
+  end
+
   scope "/", PsWeb do
     pipe_through(:browser)
 
     live("/", TweetLive.Index, :index)
     get("/p/:permalink", PostController, :show_permalink)
-    get("/test/:page", PageController, :plain_html)
     live("/live", PageLive, :other)
 
     get("/posts/new", PageController, :editor)
     resources("/posts", PostController, only: [:index, :show])
-
-    live "/habits", HabitLive, :index
-    live "/test_upload", TestLive.Index, :index
 
     resources "/comments", CommentController
     resources "/submissions", SubmissionController

@@ -10,6 +10,7 @@ defmodule PsWeb.TweetLive.Index do
     {:ok,
      assign(socket,
        tweets: list_tweets(),
+       public_posts: Ps.Posts.list_public_posts(),
        profile_recommendations: Ps.Profiles.list_profiles()
      )}
   end

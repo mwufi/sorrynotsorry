@@ -39,6 +39,16 @@
      <%= for profile <- @profile_recommendations do %>
       <.profile_card profile={profile} />
       <% end %>
+    <div class="text-xl font-bold text-gray-700 border-b p-2 mb-2">Check out these posts</div>
+    <%= for post <- @public_posts do %>
+      <div class="hover:bg-gray-100 p-2 rounded-lg cursor-pointer" phx-click={JS.navigate(~p"/posts/#{post}")}>
+        <div class="text-gray-700 font-medium text-lg"><%= post.title %></div>
+        <div class="text-gray-400 italic "><%= post.subtitle %></div>
+        <div class="sr-only">
+          <.link navigate={~p"/posts/#{post}"}>Show</.link>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
