@@ -1,6 +1,15 @@
 <div class="chat-container flex flex-col flex-1 h-screen w-full max-w-screen-sm mx-auto">
-<div class="chat-header p-3">
-chat header
+<div class="chat-header p-3 flex justify-between">
+    <div class="h-8 w-8">
+        <Heroicons.arrow_left class="h-full w-full text-blue-400" />
+    </div>
+    <div class="text-center">
+        <div class="font-medium">Tiara Andini</div>
+        <div class="text-xs text-green-600">Online</div>
+    </div>
+    <div class="avatar">
+        <img class="rounded-full" src="https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80" alt="avatar">
+    </div>
 </div>
 <div class="chat-body grow overflow-auto px-2 py-5 space-y-5">
     <%= for msg <- @chats do %>
@@ -12,7 +21,7 @@ chat header
 
         <div class="flex flex-col items-start space-y-3.5">
         <div class="mr-4 max-w-lg sm:mr-10">
-            <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm whitespace-pre-wrap"><%= msg.message |> String.trim %></div>
+            <div class="rounded-2xl rounded-tl-none border-2 border-slate-500 bg-orange-500/20 p-3 text-slate-700 shadow-sm whitespace-pre-wrap"><%= msg.message |> String.trim %></div>
             <p class="mt-1 ml-auto text-right text-xs text-slate-400">
             08:16
             </p>
@@ -23,13 +32,8 @@ chat header
     <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
         <div class="flex flex-col items-end space-y-3.5">
         <div class="ml-4 max-w-lg sm:ml-10">
-            <div class="rounded-2xl rounded-tr-none bg-blue-500/10 p-3 text-slate-700 shadow-sm">
+            <div class="rounded-2xl rounded-tr-none border-2 border-slate-500 bg-green-500/20 p-3 text-slate-700 shadow-sm">
             <%= msg.message %>
-            </div>
-        </div>
-        <div class="ml-4 max-w-lg sm:ml-10">
-            <div class="rounded-2xl rounded-tr-none bg-blue-500/10 p-3 text-slate-700 shadow-sm">
-            And that’s why a 15th century
             </div>
             <p class="mt-1 ml-auto text-left text-xs text-slate-400">
             08:16
